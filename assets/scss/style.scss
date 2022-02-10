@@ -1,0 +1,32 @@
+@import "nullstyle.scss";
+
+//* {
+//  background: #000 !important;
+//  color: #0f0 !important;
+//  outline: solid #f00 1px !important;
+//}
+
+@import "abstracts/variables";
+@import "abstracts/mixins";
+@import "abstracts/typography";
+@import "abstracts/animations";
+
+// blocks
+@import "blocks/container";
+
+html, body {
+  font-size: 62.5%;
+  font-family: $base-font;
+  background-color: #f9fafc;
+  //scroll-behavior: smooth;
+  //overflow-x: hidden;
+  //overflow-y: scroll;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// swiper styles
+
