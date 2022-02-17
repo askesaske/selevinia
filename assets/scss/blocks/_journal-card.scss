@@ -1,0 +1,96 @@
+.journal-card {
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(138, 149, 158, 0.1);
+  border-radius: 2px;
+  background-color: $white-color;
+
+  &__button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 155px;
+  }
+
+  &__img-box {
+    position: relative;
+    width: 230px;
+    height: 297px;
+    border-radius: 2px;
+    overflow: hidden;
+    flex-shrink: 0;
+    margin-right: 16px;
+  }
+
+  &__img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    width: unset;
+    max-width: unset;
+  }
+
+  &__info {
+
+  }
+
+  &__item {
+    @include text-style(1.6rem, 500, $text-color);
+    line-height: 21px;
+    margin-bottom: 10px;
+
+    span {
+      color: $title-color;
+      font-weight: 600;
+    }
+  }
+
+  &__link {
+    @include text-style(1.6rem, 600, $main-color);
+    line-height: 22px;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+
+  &__desc {
+    @include text-style(1.6rem, 500, $text-color);
+    max-height: 176px;
+    max-width: 359px;
+    line-height: 22px;
+    position: relative;
+    margin-bottom: 5px;
+    overflow: hidden;
+
+    &:after {
+      content: '';
+      position: absolute;
+      z-index: 2;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      opacity: .8;
+      height: 20px;
+      box-shadow: 0px -45px 20px -30px white inset;
+    }
+
+    &--active {
+      max-height: unset;
+
+      &:after {
+        display: none;
+      }
+    }
+  }
+
+  &__expand {
+    @include text-style(1.6rem, 600, $secondary-color);
+    cursor: pointer;
+    line-height: 22px;
+    text-decoration: underline;
+  }
+}

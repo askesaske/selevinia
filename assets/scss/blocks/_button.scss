@@ -1,0 +1,13 @@
+.button {
+  padding: 10px 0;
+  background-color: $main-color;
+  border-radius: 8px;
+  @include text-style(1.6rem, 600, $white-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    margin-right: 10px;
+  }
+}

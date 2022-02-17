@@ -1,0 +1,31 @@
+.journal-section {
+
+  &__container {
+    @extend %container;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  &__heading {
+    margin-bottom: 55px;
+  }
+
+  &__journal {
+
+  }
+
+  &__new-box {
+    width: 672px;
+    margin-right: 80px;
+  }
+
+  &__blogs {
+    width: 488px;
+  }
+
+  &__blog-card {
+    &:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  }
+}

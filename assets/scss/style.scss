@@ -13,11 +13,19 @@
 
 // blocks
 @import "blocks/container";
+@import "blocks/header";
+@import "blocks/main";
+@import "blocks/footer";
+@import "blocks/welcome-section";
+@import "blocks/button";
+@import "blocks/journal-section";
+@import "blocks/journal-card";
+@import "blocks/blog-card";
 
 html, body {
   font-size: 62.5%;
   font-family: $base-font;
-  background-color: #f9fafc;
+  background-color: $white-color;
   //scroll-behavior: smooth;
   //overflow-x: hidden;
   //overflow-y: scroll;

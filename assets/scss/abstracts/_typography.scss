@@ -1,5 +1,18 @@
 .heading-medium {
+  @include text-style(3.6rem, 800, $title-color);
+  line-height: 43px;
+  position: relative;
 
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: calc(100% + 10px);
+    width: 160px;
+    height: 5px;
+    border-radius: 8px;
+    background-color: $main-color;
+  }
 }
 
 .heading-large {

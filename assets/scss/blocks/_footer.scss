@@ -1,0 +1,78 @@
+.footer {
+  padding: 40px 0;
+  background-color: #2A353D;
+
+  &__container {
+    @extend %container;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  &__col {
+
+  }
+
+  &__logo {
+    margin-bottom: 10px;
+  }
+
+  &__logo-text {
+    @include text-style(1.4rem, 400, #BDBDBD);
+    line-height: 19px;
+    margin-bottom: 20px;
+  }
+
+  &__text {
+    @include text-style(1.4rem, 400, #BDBDBD);
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-right: 10px;
+    }
+
+    &--mb10 {
+      margin-bottom: 10px;
+    }
+
+    &--mb20 {
+      margin-bottom: 20px;
+    }
+  }
+
+  &__socials {
+    display: flex;
+    align-items: center;
+  }
+
+  &__social {
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
+
+  &__title {
+    @include text-style(1.6rem, 600, $white-color);
+    margin-bottom: 10px;
+
+    &--fw400 {
+      font-weight: 400;
+    }
+
+    &--mb20 {
+      margin-bottom: 20px;
+    }
+  }
+
+  &__button {
+    background-color: transparent;
+    border: 1px solid $white-color;
+    border-radius: 2px;
+    height: 44px;
+    width: 250px;
+    @include text-style(1.6rem, 600, $white-color);
+    margin-bottom: 30px;
+  }
+
+}
