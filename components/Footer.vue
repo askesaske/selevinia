@@ -46,12 +46,24 @@
           Карта сайта
         </div>
 
-        <div class="footer__text footer__text--mb10">Главная</div>
-        <div class="footer__text footer__text--mb10">Архив номеров</div>
-        <div class="footer__text footer__text--mb10">Блог редактора</div>
-        <div class="footer__text footer__text--mb10">Авторы</div>
-        <div class="footer__text footer__text--mb10">Правила для авторов</div>
-        <div class="footer__text footer__text--mb10">Другие публикации</div>
+        <nuxt-link tag="div" to="/" class="footer__text footer__text--mb10 footer__text--link">
+          Главная
+        </nuxt-link>
+        <div class="footer__text footer__text--mb10 footer__text--link">
+          Архив номеров
+        </div>
+        <nuxt-link tag="div" to="/blog" class="footer__text footer__text--mb10 footer__text--link">
+          Блог редактора
+        </nuxt-link>
+        <div class="footer__text footer__text--mb10 footer__text--link">
+          Авторы
+        </div>
+        <div class="footer__text footer__text--mb10 footer__text--link">
+          Правила для авторов
+        </div>
+        <div class="footer__text footer__text--mb10 footer__text--link">
+          Другие публикации
+        </div>
 
       </div>
 

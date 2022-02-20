@@ -1,0 +1,79 @@
+.filter-box {
+  display: flex;
+  align-items: center;
+
+
+  &__input {
+    height: 44px;
+    width: 915px;
+    background-color: $white-color;
+    border-radius: 2px 0 0 2px;
+    border-right: 1px solid #BDBDBD;
+    padding: 0 16px;
+    @include text-style(1.4rem, 500, $title-color);
+    box-shadow: 0 2px 20px rgba(214, 217, 224, 0.2);
+  }
+
+  &__select-box {
+    position: relative;
+  }
+
+  &__select {
+    padding: 0 16px;
+    background-color: $white-color;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    width: 281px;
+    height: 44px;
+
+    @include text-style(1.4rem, 500, #646464);
+
+    &--active {
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &__dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    background-color: $white-color;
+    padding: 10px 0;
+    width: 100%;
+    z-index: 2;
+
+    &--active {
+      display: block;
+    }
+  }
+
+  &__dropdown-item {
+    @include text-style(1.4rem, 500, #BDBDBD);
+    padding: 10px 12px;
+    cursor: pointer;
+
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
+
+    &:hover {
+      background: rgba(17, 156, 89, 0.1);
+      color: $main-color;
+    }
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 0 2px 2px 0;
+    background-color: $main-color;
+  }
+}

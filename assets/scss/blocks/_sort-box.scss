@@ -1,0 +1,28 @@
+.sort-box {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  @include text-style(1.4rem, 500, #BDBDBD);
+
+  &__text {
+    margin-right: 20px;
+  }
+
+  &__items {
+    display: flex;
+    align-items: center;
+  }
+
+  &__item {
+    cursor: pointer;
+
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+
+    &--active {
+      color: $main-color;
+      font-weight: 600;
+    }
+  }
+}

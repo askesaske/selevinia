@@ -21,6 +21,13 @@
 @import "blocks/journal-section";
 @import "blocks/journal-card";
 @import "blocks/blog-card";
+@import "blocks/breadcrumb";
+@import "blocks/blog-page";
+@import "blocks/info-block";
+@import "blocks/filter-box";
+@import "blocks/sort-box";
+@import "blocks/padding";
+@import "blocks/article-page";
 
 html, body {
   font-size: 62.5%;
@@ -36,5 +43,7 @@ img {
   height: auto;
 }
 
-// swiper styles
+.nuxt-link-exact-active {
+  color: $main-color;
+}
 

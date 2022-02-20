@@ -26,10 +26,6 @@
     &:not(:last-child) {
       margin-right: 23px;
     }
-
-    &--active {
-      color: $main-color;
-    }
   }
 
   &__search {

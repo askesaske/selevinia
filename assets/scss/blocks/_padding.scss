@@ -1,0 +1,53 @@
+.padding {
+
+  &__container {
+    @extend %container;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(#119C59, .1);
+    border-radius: 2px;
+    width: 40px;
+    height: 40px;
+
+    svg {
+      fill: #119C59;
+    }
+
+    &--right {
+      background-color: $main-color;
+
+      svg {
+        fill: $white-color;
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &__numbers {
+    display: flex;
+    align-items: center;
+  }
+
+  &__number {
+    width: 40px;
+    height: 40px;
+    border-radius: 2px;
+    @include text-style(2rem, 500, #BDBDBD);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &--active {
+      background-color: $main-color;
+      color: $white-color;
+    }
+  }
+}

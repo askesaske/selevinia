@@ -6,9 +6,9 @@
       </nuxt-link>
 
       <ul class="header__links">
-        <nuxt-link tag="li" to="/" class="header__link header__link--active">Главная</nuxt-link>
+        <nuxt-link tag="li" to="/" class="header__link">Главная</nuxt-link>
         <li class="header__link">Архив номеров</li>
-        <li class="header__link">Блог редактора</li>
+        <nuxt-link tag="lo" to="/blog" class="header__link">Блог редактора</nuxt-link>
         <li class="header__link">Авторы</li>
         <li class="header__link">Правила для авторов</li>
         <li class="header__link">Другие публикации</li>

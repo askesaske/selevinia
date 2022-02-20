@@ -1,10 +1,44 @@
 .blog-card {
+  $e: &;
+
   padding: 20px;
   background-color: $white-color;
   border-radius: 2px;
   filter: drop-shadow(0px 5px 30px rgba(224, 227, 231, 0.4));
   display: flex;
   align-items: flex-start;
+
+  &--active {
+
+    #{$e}__desc {
+      display: block;
+      @include text-style(1.6rem, 500, $text-color);
+      line-height: 22px;
+      height: 44px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+
+    #{$e}__img-box {
+      width: 190px;
+      height: 132px;
+      margin-right: 12px;
+    }
+
+    #{$e}__date {
+      @include text-style(1.6rem, 500, #BDBDBD);
+    }
+
+    #{$e}__title {
+      @include text-style(1.6rem, 600, $title-color);
+      height: 44px;
+      -webkit-line-clamp: 2;
+      margin-bottom: 8px;
+    }
+  }
 
   &__img-box {
     position: relative;
@@ -48,7 +82,7 @@
     @include text-style(1.4rem, 600, #119C59);
   }
 
-  &__desc {
+  &__title {
     @include text-style(1.6rem, 600, $title-color);
     line-height: 22px;
     height: 88px;
@@ -57,5 +91,9 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
+  }
+
+  &__desc {
+    display: none;
   }
 }

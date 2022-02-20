@@ -1,5 +1,5 @@
 <template>
-  <div class="blog-card">
+  <div class="blog-card" :class="{'blog-card--active' : withDescription}">
     <div class="blog-card__img-box">
       <img :src="img" alt="" class="blog-card__img">
     </div>
@@ -15,6 +15,10 @@
         </div>
       </div>
 
+      <div class="blog-card__title">
+        {{ title }}
+      </div>
+
       <div class="blog-card__desc">
         {{ description }}
       </div>
@@ -28,7 +32,15 @@ export default {
     img: String,
     date: String,
     tag: String,
-    description: String
+    title: String,
+    withDescription: {
+      type: Boolean,
+      default: false
+    },
+    description: {
+      type: String,
+      default: ''
+    }
   }
 }
 </script>

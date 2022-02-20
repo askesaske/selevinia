@@ -1,0 +1,31 @@
+.blog-page {
+  padding: 20px 0 0;
+
+  &__info-block {
+    margin-bottom: 40px;
+  }
+
+  &__container {
+    @extend %container;
+  }
+
+  &__main {
+    background-color: #f9fafc;
+    padding: 40px 0 100px;
+  }
+
+  &__filter {
+    margin-bottom: 30px;
+  }
+
+  &__sort {
+    margin-bottom: 20px;
+  }
+
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    margin-bottom: 60px;
+  }
+}
