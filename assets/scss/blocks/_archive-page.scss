@@ -1,0 +1,34 @@
+.archive-page {
+  padding-top: 20px;
+
+  &__info-block {
+    margin-bottom: 40px;
+  }
+
+  &__container {
+    @extend %container;
+  }
+
+  &__main {
+    background-color: #f9fafc;
+    padding: 40px 0 100px;
+  }
+
+  &__filter {
+    margin-bottom: 30px;
+  }
+
+  &__sort {
+    margin-bottom: 20px;
+  }
+
+  &__cards {
+    margin-bottom: 60px;
+  }
+
+  &__journal {
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+}

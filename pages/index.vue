@@ -27,7 +27,7 @@
             <p v-else>Свернуть</p>
           </div>
 
-          <button class="button welcome-section__button">
+          <button class="button welcome-section__button" @click="openModal">
             Подписаться
           </button>
         </div>
@@ -72,26 +72,43 @@
         </div>
       </div>
     </section>
+
+    <modal-box
+        @close="closeModal"
+        v-if="modalShow"
+    ></modal-box>
+
   </main>
 </template>
 
 <script>
 import JournalCard from "@/components/JournalCard";
 import BlogCard from "@/components/BlogCard";
+import ModalBox from "@/components/ModalBox";
 
 export default {
   components: {
     JournalCard,
-    BlogCard
+    BlogCard,
+    ModalBox,
   },
   data() {
     return {
-      expandStatus: false
+      expandStatus: false,
+      modalShow: false
     }
   },
   methods: {
     toggleExpand() {
       this.expandStatus = !this.expandStatus
+    },
+    openModal() {
+      this.modalShow = true
+      document.querySelector('body').style.overflow = 'hidden'
+    },
+    closeModal() {
+      this.modalShow = false
+      document.querySelector('body').style.overflow = 'unset'
     }
   }
 }

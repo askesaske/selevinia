@@ -5,17 +5,20 @@
     </div>
 
     <div class="journal-card__info">
-      <div class="journal-card__item">
+      <div class="journal-card__item" v-if="name">
+        Название:: <span>{{ name }}</span>
+      </div>
+      <div class="journal-card__item" v-if="year">
         Год: <span>{{ year }}</span>
       </div>
-      <div class="journal-card__item">
+      <div class="journal-card__item" v-if="tom">
         Том: <span>{{ tom }}</span>
       </div>
       <div class="journal-card__link">
         Прочитать
       </div>
 
-      <div class="journal-card__desc" :class="{'journal-card__desc--active' : expandStatus}">
+      <div class="journal-card__desc" :class="{'journal-card__desc--active' : expandStatus}" v-if="description">
         {{ description }}
       </div>
 
@@ -42,10 +45,26 @@ export default {
     }
   },
   props: {
-    year: String,
-    tom: String,
-    img: String,
-    description: String
+    year: {
+      type: String,
+      default: null
+    },
+    tom: {
+      type: String,
+      default: null
+    },
+    img: {
+      type: String,
+      default: null
+    },
+    description: {
+      type: String,
+      default: null
+    },
+    name: {
+      type: String,
+      default: null
+    }
   },
   methods: {
     toggleExpand() {

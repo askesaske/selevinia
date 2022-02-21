@@ -49,21 +49,21 @@
         <nuxt-link tag="div" to="/" class="footer__text footer__text--mb10 footer__text--link">
           Главная
         </nuxt-link>
-        <div class="footer__text footer__text--mb10 footer__text--link">
+        <nuxt-link tag="div" to="/archive" class="footer__text footer__text--mb10 footer__text--link">
           Архив номеров
-        </div>
+        </nuxt-link>
         <nuxt-link tag="div" to="/blog" class="footer__text footer__text--mb10 footer__text--link">
           Блог редактора
         </nuxt-link>
-        <div class="footer__text footer__text--mb10 footer__text--link">
+        <nuxt-link tag="div" to="/authors" class="footer__text footer__text--mb10 footer__text--link">
           Авторы
-        </div>
-        <div class="footer__text footer__text--mb10 footer__text--link">
+        </nuxt-link>
+        <nuxt-link tag="div" to="/rules" class="footer__text footer__text--mb10 footer__text--link">
           Правила для авторов
-        </div>
-        <div class="footer__text footer__text--mb10 footer__text--link">
+        </nuxt-link>
+        <nuxt-link tag="div" to="/other" class="footer__text footer__text--mb10 footer__text--link">
           Другие публикации
-        </div>
+        </nuxt-link>
 
       </div>
 

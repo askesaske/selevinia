@@ -60,7 +60,6 @@
   &__desc {
     @include text-style(1.6rem, 500, $text-color);
     max-height: 176px;
-    max-width: 359px;
     line-height: 22px;
     position: relative;
     margin-bottom: 5px;

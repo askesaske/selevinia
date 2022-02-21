@@ -1,0 +1,32 @@
+.authors-page {
+  padding-top: 20px;
+
+  &__info-block {
+    margin-bottom: 40px;
+  }
+
+  &__container {
+    @extend %container;
+  }
+
+  &__search {
+    margin-bottom: 30px;
+  }
+
+  &__main {
+    background-color: #f9fafc;
+    padding: 40px 0 100px;
+  }
+
+  &__filter {
+    margin-bottom: 30px;
+  }
+
+  &__sort {
+    margin-bottom: 20px;
+  }
+
+  &__table {
+    margin-bottom: 60px;
+  }
+}

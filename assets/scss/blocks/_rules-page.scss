@@ -1,0 +1,18 @@
+.rules-page {
+  padding-top: 20px;
+
+  &__main {
+    background-color: #f9fafc;
+    padding: 40px 0 100px;
+  }
+
+  &__container {
+    @extend %container;
+  }
+
+  &__text {
+    @include text-style(1.6rem, 500, $text-color);
+    line-height: 22px;
+    max-width: 895px;
+  }
+}

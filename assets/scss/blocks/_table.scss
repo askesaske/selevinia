@@ -1,0 +1,100 @@
+.table {
+  width: 100%;
+  border-collapse: separate;
+  text-align: left;
+  border-spacing: 0 5px;
+
+  th {
+    background-color: #BF927A;
+    padding: 12px 20px;
+    @include text-style(1.5rem, 600, $white-color);
+
+    &:first-child {
+      border-radius: 2px 0 0 2px;
+    }
+
+    &:last-child {
+      border-radius: 0 2px 2px 0;
+    }
+  }
+
+  td {
+    background-color: $white-color;
+    padding: 10px 20px;
+    @include text-style(1.6rem, 500, $text-color);
+    line-height: 22px;
+    vertical-align: baseline;
+
+    &:first-child {
+      border-radius: 2px 0 0 2px;
+    }
+
+    &:nth-child(2) {
+      width: 217px;
+    }
+
+    &:nth-child(3) {
+      width: 466px;
+    }
+
+    &:last-child {
+      cursor: pointer;
+      border-radius: 0 2px 2px 0;
+    }
+  }
+
+  &__articles {
+    width: 387px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  &__about {
+    height: 44px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  &__row {
+    display: flex;
+    align-items: flex-start;
+
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__label {
+    @include text-style(1.4rem, 500, #BDBDBD);
+    line-height: 19px;
+    flex-shrink: 0;
+    margin-right: 125px;
+    width: 116px;
+  }
+
+  &__text {
+    @include text-style(1.4rem, 500, $text-color);
+    line-height: 19px;
+  }
+
+  &__dropdown {
+    padding: 20px 15px 20px 68px !important;
+    position: relative;
+    top: -10px;
+  }
+
+  &__shadow {
+    box-shadow: 0 10px 30px rgba(138, 149, 158, 0.1);
+    position: relative;
+    z-index: 2;
+
+    td svg {
+      transition: all .2s;
+      transform: rotate(180deg);
+    }
+  }
+}

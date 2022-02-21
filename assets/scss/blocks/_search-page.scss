@@ -1,0 +1,33 @@
+.search-page {
+  padding: 20px 0 100px;
+
+  &__container {
+    @extend %container;
+  }
+
+  &__breadcrumb {
+    margin-bottom: 20px;
+  }
+
+  &__heading {
+    @include text-style(4rem, 800, $title-color);
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+
+    span {
+      position: absolute;
+      @include text-style(2rem, 800, $secondary-color);
+      top: 0;
+      left: calc(100% + 10px);
+    }
+  }
+
+  &__results {
+    & > * {
+      &:not(:last-child) {
+        margin-bottom: 30px;
+      }
+    }
+  }
+}

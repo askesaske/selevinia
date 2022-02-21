@@ -1,0 +1,71 @@
+.modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: rgba(29, 29, 29, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+
+  &__wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 522px;
+    height: 338px;
+    background-color: $white-color;
+    border-radius: 2px;
+    box-shadow: 0 2px 20px rgba(220, 219, 219, 0.25);
+    padding: 60px 40px 40px;
+  }
+
+  &__cancel {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+  }
+
+  &__title {
+    @include text-style(2.4rem, 600, $title-color);
+    margin-bottom: 13px;
+  }
+
+  &__subtitle {
+    @include text-style(1.6rem, 400, $text-color);
+    line-height: 22px;
+    margin-bottom: 20px;
+  }
+
+  &__input-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 44px;
+    background-color: #F5F5F5;
+    border-radius: 4px;
+    padding: 0 16px;
+    margin-bottom: 40px;
+
+    svg {
+      fill: $main-color;
+      margin-right: 5px;
+    }
+  }
+
+  &__input {
+    background-color: transparent;
+    @include text-style(1.4rem, 400, $text-color);
+    width: 100%;
+  }
+
+  &__btn {
+    width: 100%;
+    height: 44px;
+    background-color: $main-color;
+    border-radius: 2px;
+    @include text-style(1.6rem, 600, $white-color);
+  }
+}
