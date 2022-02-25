@@ -22,4 +22,18 @@
     border-radius: 0 2px 2px 0;
     background-color: $main-color;
   }
+
+  @include respond(phone) {
+    &__input {
+      height: 36px;
+      padding: 0 12px;
+      @include text-style(1.2rem, 500, $title-color);
+    }
+
+    &__btn {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+    }
+  }
 }

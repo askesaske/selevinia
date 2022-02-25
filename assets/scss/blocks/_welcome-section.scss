@@ -61,5 +61,69 @@
   &__button {
     display: block;
     width: 184px;
+
+    &--mobile {
+      display: none !important;
+    }
+  }
+
+  @include respond(tab-land) {
+    &__img {
+      width: 400px;
+    }
+  }
+
+  @include respond(phone) {
+    &__container {
+      display: block;
+    }
+
+    &__info {
+      max-width: unset;
+      padding-top: 0;
+    }
+
+    &__heading {
+      @include text-style(1.6rem, 800, $secondary-color);
+    }
+
+    &__title {
+      @include text-style(4rem, 700, $title-color);
+    }
+
+    &__subtitle {
+      @include text-style(1.4rem, 500, $text-color);
+      line-height: 21px;
+
+      height: 63px;
+      -webkit-line-clamp: 3;
+
+      &--active {
+        height: unset;
+        overflow: unset;
+        text-overflow: unset;
+        display: block;
+        -webkit-box-orient: unset;
+        -webkit-line-clamp: unset;
+      }
+    }
+
+    &__expand {
+      margin-bottom: 20px;
+    }
+
+    &__button {
+      width: 100%;
+      display: none !important;
+
+      &--mobile {
+        display: block !important;
+      }
+    }
+
+    &__img {
+      width: unset;
+      margin-bottom: 20px;
+    }
   }
 }

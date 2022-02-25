@@ -36,6 +36,8 @@
     &--link {
       cursor: pointer;
       color: #BDBDBD !important;
+      font-weight: 400 !important;
+      text-decoration: unset !important;
     }
 
     &--mb10 {
@@ -81,4 +83,76 @@
     margin-bottom: 30px;
   }
 
+  @include respond(tab-land) {
+    &__container {
+      flex-wrap: wrap;
+    }
+
+    &__col {
+      margin-bottom: 40px;
+    }
+  }
+
+  @include respond(phone) {
+    padding: 5px 0 30px;
+
+    &__container {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__col {
+      text-align: center;
+      width: 100%;
+      margin-bottom: 0;
+
+      &:not(:last-child) {
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(#F5F5F5, .2);
+        margin-bottom: 16px;
+      }
+    }
+
+    &__logo-text {
+      @include text-style(1.2rem, 400, #BDBDBD);
+      line-height: 16px;
+      margin-bottom: 12px;
+    }
+
+    &__text {
+      @include text-style(1.4rem, 400, #BDBDBD);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        fill: #E0E0E0;
+        margin-right: 6px;
+      }
+
+      &--dnone {
+        display: none;
+      }
+    }
+
+    &__socials {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__title {
+      @include text-style(1.4rem, 600, $white-color);
+      margin-bottom: 12px;
+
+      &--mb20 {
+        margin-bottom: 12px;
+      }
+    }
+
+    &__button {
+      margin-bottom: 20px;
+    }
+  }
 }

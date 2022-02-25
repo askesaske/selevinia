@@ -97,4 +97,83 @@
       transform: rotate(180deg);
     }
   }
+
+  @include respond(tab-land) {
+    td {
+      &:nth-child(2) {
+        width: unset;
+      }
+
+      &:nth-child(3) {
+        width: 200px;
+      }
+    }
+
+    &__articles {
+      width: unset;
+      height: 22px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      white-space: unset;
+    }
+  }
+
+  @include respond(phone) {
+    &__sm {
+      display: none;
+    }
+
+    th {
+      background-color: #BF927A;
+      padding: 9px 8px;
+      @include text-style(1.2rem, 600, $white-color);
+    }
+
+    td {
+      padding: 9px 8px;
+      @include text-style(1.2rem, 500, $text-color);
+      line-height: 16px;
+
+      &:nth-child(2) {
+        width: unset;
+      }
+
+      &:nth-child(3) {
+        width: unset;
+      }
+    }
+
+    &__articles {
+      height: 17px;
+    }
+
+    &__about {
+      height: 50px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+    }
+
+    &__label {
+      @include text-style(1.2rem, 500, #BDBDBD);
+      line-height: 16px;
+      margin-right: 10px;
+      width: 100px;
+    }
+
+    &__text {
+      @include text-style(1.2rem, 500, $text-color);
+      line-height: 16px;
+    }
+
+    &__dropdown {
+      padding: 10px 10px 35px !important;
+      top: -5px;
+    }
+  }
 }

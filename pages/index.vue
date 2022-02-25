@@ -34,6 +34,10 @@
 
         <img src="../assets/img/main-pic.svg" alt="" class="welcome-section__img">
 
+        <button class="button welcome-section__button welcome-section__button--mobile" @click="openModal">
+          Подписаться
+        </button>
+
       </div>
     </section>
 

@@ -36,6 +36,7 @@
 @import "blocks/other-page";
 @import "blocks/search-page";
 @import "blocks/modal";
+@import "blocks/sidebar";
 
 html, body {
   font-size: 62.5%;
@@ -53,5 +54,11 @@ img {
 
 .nuxt-link-exact-active {
   color: $main-color;
+
+  @include respond(tab-land) {
+    color: #F5F5F5;
+    text-decoration: underline;
+    font-weight: 700;
+  }
 }
 

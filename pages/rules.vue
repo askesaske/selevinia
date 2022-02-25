@@ -1,6 +1,6 @@
 <template>
   <div class="rules-page">
-    <info-block class="authors-page__info-block"
+    <info-block class="rules-page__info-block"
                 :image-url="require('assets/img/rules-img.svg')"
                 :heading="'Правила для авторов'"
                 :subtitle="'А ещё элементы политического процесса, вне зависимости \n'+

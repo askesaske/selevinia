@@ -1,8 +1,12 @@
 <template>
-  <header class="header" :class="{'header--active' : searchStatus}">
+  <header class="header" :class="{'header--active' : loadedSearchState}">
     <div class="header__container">
       <nuxt-link to="/" class="header__logo">
         <img src="../assets/img/icons/header-logo.svg" alt="">
+      </nuxt-link>
+
+      <nuxt-link to="/" class="header__logo header__logo--sm">
+        <img src="../assets/img/icons/header-logo-2.png" alt="">
       </nuxt-link>
 
       <ul class="header__links">
@@ -23,7 +27,7 @@
           </svg>
         </button>
 
-        <svg width="20" height="20" class="header__cancel" @click="searchStatus = false">
+        <svg width="20" height="20" class="header__cancel" @click="closeSearch">
           <use href="../assets/img/icons.svg#cancel"></use>
         </svg>
       </div>
@@ -32,20 +36,41 @@
         <nuxt-link tag="div" to="/EN" class="header__lang">EN</nuxt-link>
         <nuxt-link tag="div" to="/KZ" class="header__lang">KZ</nuxt-link>
       </div>
+
+      <svg class="header__burger" width="30" height="30" @click="openSidebar">
+        <use href="../assets/img/icons.svg#burger"></use>
+      </svg>
     </div>
+
   </header>
 </template>
 
 <script>
+import SideBar from "@/components/SideBar";
+
 export default {
+  components: {
+    SideBar
+  },
   data() {
     return {
       searchStatus: false
     }
   },
+  computed: {
+    loadedSearchState() {
+      return this.$store.state.searchState
+    }
+  },
   methods: {
     search() {
-      this.searchStatus = true
+      this.$store.commit('setSearchState', true)
+    },
+    closeSearch() {
+      this.$store.commit('setSearchState', false)
+    },
+    openSidebar() {
+      this.$store.commit('setSidebarState', true)
     }
   }
 };

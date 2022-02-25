@@ -6,6 +6,8 @@
     @include text-style(1.4rem, 400, #646D70);
     position: relative;
     cursor: pointer;
+    text-decoration: unset !important;
+    font-weight: 400 !important;
 
     &:not(:last-child) {
       margin-right: 10px;

@@ -30,4 +30,28 @@
       }
     }
   }
+
+  @include respond(phone) {
+    padding: 16px 0 80px;
+
+    &__heading {
+      @include text-style(3rem, 800, $title-color);
+      margin-bottom: 16px;
+
+      span {
+        position: absolute;
+        @include text-style(1.8rem, 800, $secondary-color);
+        top: 0;
+        left: calc(100% + 5px);
+      }
+    }
+
+    &__results {
+      & > * {
+        &:not(:last-child) {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
 }

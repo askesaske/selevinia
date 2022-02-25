@@ -2,7 +2,7 @@
   padding-top: 20px;
 
   &__info-block {
-    margin-bottom: 40px;
+
   }
 
   &__container {
@@ -29,6 +29,30 @@
   &__journal {
     &:not(:last-child) {
       margin-bottom: 20px;
+    }
+  }
+
+  @include respond(phone) {
+    &__main {
+      padding: 20px 0 80px;
+    }
+
+    &__filter {
+      margin-bottom: 16px;
+    }
+
+    &__sort {
+      margin-bottom: 16px;
+    }
+
+    &__cards {
+      margin-bottom: 40px;
+    }
+
+    &__journal {
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
     }
   }
 }

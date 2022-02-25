@@ -1,0 +1,62 @@
+.sidebar {
+  display: none;
+
+  position: fixed;
+  top: 0;
+  right: -100%;
+  height: 100vh;
+  z-index: 1000;
+  width: 300px;
+  background-color: #2A353D;
+  backdrop-filter: blur(10px);
+  padding: 70px 30px;
+  transition: all .5s;
+
+  &--active {
+    right: 0;
+  }
+
+  &__close {
+    position: absolute;
+    top: 35px;
+    right: 20px;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+
+    & > * {
+      &:not(:last-child) {
+        margin-right: 20px;
+      }
+    }
+
+    margin-bottom: 20px;
+  }
+
+  &__search {
+    fill: #F5F5F5;
+  }
+
+  &__lang {
+    @include text-style(2rem, 600, #F5F5F5);
+    text-transform: uppercase;
+  }
+
+  &__links {
+
+  }
+
+  &__link {
+    @include text-style(1.8rem, 400, $white-color);
+
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+
+  @include respond(tab-land) {
+    display: unset;
+  }
+}

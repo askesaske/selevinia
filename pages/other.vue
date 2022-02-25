@@ -53,7 +53,7 @@ export default {
   data() {
     return {
       breadcrumb: [{
-        name: 'Архив',
+        name: 'Другие публикации',
         link: ''
       }]
     }

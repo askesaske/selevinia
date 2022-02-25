@@ -1,11 +1,14 @@
 .journal-card {
   padding: 20px;
-  display: flex;
-  align-items: flex-start;
   position: relative;
   box-shadow: 0 10px 30px rgba(138, 149, 158, 0.1);
   border-radius: 2px;
   background-color: $white-color;
+
+  &__row {
+    display: flex;
+    align-items: flex-start;
+  }
 
   &__button {
     position: absolute;
@@ -29,8 +32,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 100%;
-    width: unset;
+    height: unset;
+    width: 100%;
     max-width: unset;
   }
 
@@ -55,6 +58,13 @@
     text-decoration: underline;
     cursor: pointer;
     margin-bottom: 10px;
+  }
+
+  &__desc-box {
+
+    &--mobile {
+      display: none;
+    }
   }
 
   &__desc {
@@ -91,5 +101,60 @@
     cursor: pointer;
     line-height: 22px;
     text-decoration: underline;
+  }
+
+  @include respond(phone) {
+    padding: 10px 10px 16px;
+
+    &__row {
+      margin-bottom: 10px;
+    }
+
+    &__img-box {
+      width: 118px;
+      height: 152px;
+      margin-right: 10px;
+    }
+
+    &__item {
+      @include text-style(1.4rem, 500, $text-color);
+      line-height: 19px;
+      margin-bottom: 8px;
+    }
+
+    &__link {
+      @include text-style(1.4rem, 600, $main-color);
+      line-height: 19px;
+      margin-bottom: 0;
+    }
+
+    &__button {
+      top: 105px;
+      right: 17px;
+      width: 189px;
+    }
+
+    &__desc-box {
+      display: none;
+
+      &--mobile {
+        display: block;
+      }
+    }
+
+    &__desc {
+      @include text-style(1.4rem, 500, $text-color);
+      max-height: 323px;
+      line-height: 19px;
+
+      &--active {
+        max-height: unset;
+
+        &:after {
+          display: none;
+        }
+      }
+    }
+
   }
 }

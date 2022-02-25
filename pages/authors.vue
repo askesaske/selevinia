@@ -20,7 +20,7 @@
         <table class="authors-page__table table">
           <thead>
           <tr>
-            <th>№</th>
+            <th class="table__sm">№</th>
             <th>ФИО</th>
             <th>Об авторе</th>
             <th>Перечень статей</th>
@@ -29,7 +29,7 @@
           </thead>
           <tbody v-for="i in 5" :key="i">
           <tr :class="{'table__shadow' : dropdownState === i}">
-            <td>001</td>
+            <td class="table__sm">001</td>
             <td>Иванов Иван Иванович</td>
             <td>
               <span class="table__about">

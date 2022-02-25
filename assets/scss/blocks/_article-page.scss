@@ -27,6 +27,10 @@
 
   &__share {
     width: 170px;
+
+    &--sm {
+      display: none;
+    }
   }
 
   &__text {
@@ -81,6 +85,9 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: unset;
+    height: unset;
   }
 
   &__description {
@@ -168,5 +175,124 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
+  }
+
+  @include respond(tab-land) {
+    padding: 16px 0 80px;
+
+    &__breadcrumb {
+      margin-bottom: 16px;
+    }
+
+    &__row {
+      display: block;
+    }
+
+    &__share {
+      display: none;
+
+      &--sm {
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+    }
+
+    &__text {
+      margin-bottom: 0;
+      margin-right: 16px;
+    }
+
+    &__main {
+      width: unset;
+      margin-bottom: 20px;
+    }
+
+    &__popular {
+      width: unset;
+      margin-top: 0;
+    }
+
+    &__items {
+      max-height: 300px;
+    }
+  }
+
+  @include respond(phone) {
+    &__heading {
+      @include text-style(1.6rem, 600, $title-color);
+      margin-bottom: 10px;
+    }
+
+    &__details {
+      margin-bottom: 16px;
+    }
+
+    &__date {
+      @include text-style(1.4rem, 500, #BDBDBD);
+      margin-right: 16px;
+    }
+
+    &__tag {
+      padding: 3px 10px;
+      border-radius: 2px;
+      @include text-style(1.2rem, 600, $main-color);
+    }
+
+    &__img-box {
+      width: 100%;
+      height: 238px;
+      margin-bottom: 16px;
+    }
+
+    &__description {
+      @include text-style(1.4rem, 500, $text-color);
+      line-height: 19px;
+    }
+
+    &__text {
+      @include text-style(1.4rem, 500, #BDBDBD);
+    }
+
+    &__popular {
+      padding: 12px 0 12px 12px;
+    }
+
+    &__title {
+      @include text-style(1.4rem, 600, $title-color);
+      line-height: 19px;
+      margin-bottom: 10px;
+    }
+
+    &__item {
+      padding-right: 12px;
+
+      &:not(:last-child) {
+        margin-bottom: 24px;
+
+        &:after {
+          top: calc(100% + 12px);
+          width: calc(100% - 12px);
+        }
+      }
+    }
+
+    &__item-row {
+      margin-bottom: 8px;
+    }
+
+    &__date {
+      @include text-style(1.2rem, 500, #BDBDBD);
+    }
+
+    &__item-tag {
+      @include text-style(1.2rem, 600, $main-color);
+    }
+
+    &__item-title {
+      @include text-style(1.2rem, 600, $title-color);
+      line-height: 16px;
+      height: 32px;
+    }
   }
 }

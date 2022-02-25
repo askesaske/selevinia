@@ -50,4 +50,17 @@
       color: $white-color;
     }
   }
+
+  @include respond(phone) {
+    &__btn {
+      width: 30px;
+      height: 30px;
+    }
+
+    &__number {
+      width: 30px;
+      height: 30px;
+      @include text-style(1.4rem, 500, #BDBDBD);
+    }
+  }
 }

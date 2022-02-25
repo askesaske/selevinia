@@ -98,9 +98,10 @@
         </button>
 
         <div class="footer__text footer__text--mb10">Сайт разработан при поддержке АСБК</div>
-        <div class="footer__text footer__text--mb10">Автор лого Selevinia: Т. Е. Лопатина</div>
-        <div class="footer__text footer__text--mb10">Автор штриховых рисунков: Ф. Ф. Карпов</div>
+        <div class="footer__text footer__text--dnone footer__text--mb10">Автор лого Selevinia: Т. Е. Лопатина</div>
+        <div class="footer__text footer__text--dnone footer__text--mb10">Автор штриховых рисунков: Ф. Ф. Карпов</div>
       </div>
+
     </div>
   </footer>
 </template>

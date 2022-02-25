@@ -2,7 +2,6 @@
   padding: 20px 0 0;
 
   &__info-block {
-    margin-bottom: 40px;
   }
 
   &__container {
@@ -27,5 +26,25 @@
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
     margin-bottom: 60px;
+  }
+
+  @include respond(tab-land) {
+    &__cards {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  @include respond(phone) {
+    &__main {
+      padding: 20px 0 80px;
+    }
+
+    &__filter {
+      margin-bottom: 16px;
+    }
+
+    &__cards {
+      margin-bottom: 40px;
+    }
   }
 }

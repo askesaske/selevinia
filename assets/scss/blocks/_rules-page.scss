@@ -15,4 +15,22 @@
     line-height: 22px;
     max-width: 895px;
   }
+
+  @include respond(tab-land) {
+    &__text {
+      max-width: unset;
+    }
+  }
+
+  @include respond(phone) {
+    &__main {
+      padding: 20px 0 80px;
+    }
+
+    &__text {
+      @include text-style(1.4rem, 500, $text-color);
+      line-height: 19px;
+      max-width: unset;
+    }
+  }
 }

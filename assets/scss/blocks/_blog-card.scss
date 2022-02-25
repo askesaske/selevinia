@@ -96,4 +96,71 @@
   &__desc {
     display: none;
   }
+
+  @include respond(phone) {
+    padding: 10px;
+
+    &--active {
+
+      height: 150px;
+      position: relative;
+
+      #{$e}__desc {
+        display: block;
+        @include text-style(1.4rem, 500, $text-color);
+        line-height: 18px;
+        height: 38px;
+        -webkit-line-clamp: 2;
+        position: absolute;
+        left: 10px;
+        top: 105px;
+      }
+
+      #{$e}__img-box {
+        width: 125px;
+        height: 86px;
+        margin-right: 6px;
+      }
+
+      #{$e}__date {
+        @include text-style(1.2rem, 500, #BDBDBD);
+        margin-bottom: 5px;
+      }
+
+      #{$e}__title {
+        @include text-style(1.4rem, 600, $title-color);
+        height: 38px;
+        -webkit-line-clamp: 2;
+        margin-bottom: 0px;
+      }
+    }
+
+    &__img-box {
+      width: 125px;
+      height: 86px;
+      margin-right: 6px;
+    }
+
+    &__row {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    &__date {
+      @include text-style(1.2rem, 500, #BDBDBD);
+      margin-bottom: 5px;
+    }
+
+    &__tag {
+      display: inline-block;
+      @include text-style(1.2rem, 600, #119C59);
+    }
+
+    &__title {
+      @include text-style(1.4rem, 600, $title-color);
+      line-height: 19px;
+      height: 38px;
+      -webkit-line-clamp: 2;
+    }
+  }
 }

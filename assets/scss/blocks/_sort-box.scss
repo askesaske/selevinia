@@ -6,6 +6,10 @@
 
   &__text {
     margin-right: 20px;
+
+    span {
+      display: none;
+    }
   }
 
   &__items {
@@ -23,6 +27,60 @@
     &--active {
       color: $main-color;
       font-weight: 600;
+    }
+  }
+
+  @include respond(phone) {
+    position: relative;
+    @include text-style(1.2rem, 500, #BDBDBD);
+
+    &__text {
+      display: flex;
+      align-items: center;
+      margin-right: 0;
+
+      span {
+        margin-left: 5px;
+        display: flex;
+        align-items: center;
+        color: $main-color;
+        font-weight: 600;
+
+        svg {
+          margin-left: 5px;
+        }
+      }
+    }
+
+    &__items {
+      display: none;
+
+      &--active {
+        display: block;
+        width: 130px;
+        height: 104px;
+        z-index: 5;
+        background-color: $white-color;
+        box-shadow: 0 10px 30px rgba(138, 149, 158, 0.1);
+        border-radius: 2px;
+        position: absolute;
+        right: 0;
+        top: 20px;
+        padding: 7px 0;
+      }
+    }
+
+    &__item {
+      &:not(:last-child) {
+        margin-right: 0;
+        margin-bottom: 11px;
+      }
+      padding: 5px 10px;
+      &:focus {
+        background: rgba(17, 156, 89, 0.1);
+        color: $main-color;
+      }
+
     }
   }
 }

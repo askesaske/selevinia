@@ -20,6 +20,7 @@
 
     #{$e}__cancel {
       display: block;
+      flex-shrink: 0;
     }
 
     #{$e}__search {
@@ -38,10 +39,15 @@
       background-color: $main-color;
       border-radius: 0 2px 2px 0;
       margin-right: 30px;
+      flex-shrink: 0;
 
       svg {
         fill: $white-color;
       }
+    }
+
+    #{$e}__burger {
+      display: none;
     }
   }
 
@@ -54,6 +60,10 @@
   &__logo {
     margin-right: 32px;
     flex-shrink: 0;
+
+    &--sm {
+      display: none;
+    }
   }
 
   &__links {
@@ -113,5 +123,48 @@
 
   &__cancel {
     display: none;
+  }
+
+  &__burger {
+    display: none;
+  }
+
+  @include respond(tab-land) {
+    &__burger {
+      display: block;
+    }
+
+    &__links {
+      display: none;
+    }
+
+    &__search {
+      display: none;
+    }
+
+    &__langs {
+      display: none;
+    }
+
+    &__container {
+      justify-content: space-between;
+    }
+
+    &__logo {
+      display: none;
+
+      &--sm {
+        display: block;
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  @include respond(phone) {
+    &--active {
+      #{$e}__logo {
+        display: none;
+      }
+    }
   }
 }

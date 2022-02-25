@@ -2,7 +2,6 @@
   padding-top: 20px;
 
   &__info-block {
-    margin-bottom: 40px;
   }
 
   &__container {
@@ -28,5 +27,36 @@
 
   &__table {
     margin-bottom: 60px;
+  }
+
+  @include respond(phone) {
+    padding-top: 16px;
+
+    &__info-block {
+    }
+
+    &__container {
+      @extend %container;
+    }
+
+    &__search {
+      margin-bottom: 16px;
+    }
+
+    &__main {
+      padding: 20px 0 80px;
+    }
+
+    &__filter {
+      margin-bottom: 16px;
+    }
+
+    &__sort {
+      margin-bottom: 16px;
+    }
+
+    &__table {
+      margin-bottom: 40px;
+    }
   }
 }

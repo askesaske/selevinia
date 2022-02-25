@@ -28,4 +28,32 @@
       margin-bottom: 16px;
     }
   }
+
+  @include respond(tab-land) {
+    &__container {
+      display: block;
+    }
+
+    &__new-box {
+      width: unset;
+      margin-right: 0;
+      margin-bottom: 80px;
+    }
+
+    &__blogs {
+      width: unset;
+    }
+  }
+
+  @include respond(phone) {
+    &__heading {
+      margin-bottom: 30px;
+    }
+
+    &__blog-card {
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+    }
+  }
 }
