@@ -8,7 +8,6 @@ const createStore = () => {
             loadedArchive: [],
             loadedPosts: [],
             loadedPages: [],
-            loadedAuthors: []
         },
         mutations: {
             setSidebarState(state, info) {
@@ -26,9 +25,6 @@ const createStore = () => {
             setPages(state, info) {
                 state.loadedPages = info
             },
-            setAuthors(state, info) {
-                state.loadedAuthors = info
-            }
         },
         actions: {
             async nuxtServerInit(VuexContext, context) {
@@ -40,9 +36,6 @@ const createStore = () => {
 
                 const pagesResponse = await context.$axios.get(process.env.API + 'pages')
                 VuexContext.commit('setPages', pagesResponse.data.data)
-
-                const authorsResponse = await context.$axios.get(process.env.API + 'authors')
-                VuexContext.commit('setAuthors', authorsResponse.data.data.data)
             },
 
             setArchive(vuexContext, archiveInfo) {
@@ -55,10 +48,6 @@ const createStore = () => {
 
             setPages(vuexContext, pagesInfo) {
                 vuexContext.commit('setPages', pagesInfo)
-            },
-
-            setAuthors(vuexContext, authorsInfo) {
-                vuexContext.commit('setAuthors', authorsInfo)
             },
 
             setSidebarState(vuexContext, sidebarState) {
@@ -84,9 +73,6 @@ const createStore = () => {
             loadedPages(state) {
                 return state.loadedPages
             },
-            loadedAuthors(state) {
-                return state.loadedAuthors
-            }
         }
     })
 }
