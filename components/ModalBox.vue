@@ -17,10 +17,10 @@
         <svg width="24" height="24">
           <use href="../assets/img/icons.svg#mail"></use>
         </svg>
-        <input type="email" class="modal__input" placeholder="Введите ваш email ( example@gmail.com )">
+        <input type="email" class="modal__input" placeholder="Введите ваш email ( example@gmail.com )" v-model="mail">
       </div>
 
-      <button class="modal__btn">
+      <button class="modal__btn" @click="sendMail">
         Подписаться
       </button>
     </div>
@@ -29,6 +29,19 @@
 
 <script>
 export default {
-
+  data() {
+    return {
+      mail: ''
+    }
+  },
+  methods: {
+    sendMail() {
+      this.$axios.post(process.env.API + 'subscriptions ', {
+        email: this.mail
+      })
+          .then(response => console.log(response))
+          .catch(e => console.log(e))
+    }
+  }
 }
 </script>

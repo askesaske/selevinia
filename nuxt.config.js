@@ -63,7 +63,7 @@ export default {
   },
 
   env: {
-    // API: 'https://sabadoryo.com/api/',
+    API: 'https://sabadoryo.com/api/',
   },
 
   // Content module configuration: https://go.nuxtjs.dev/config-content

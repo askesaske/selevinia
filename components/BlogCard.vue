@@ -1,5 +1,8 @@
 <template>
-  <div class="blog-card" :class="{'blog-card--active' : withDescription}">
+  <nuxt-link tag="div"
+             :to="'/blog/' + id"
+             class="blog-card"
+             :class="{'blog-card--active' : withDescription}">
     <div class="blog-card__img-box">
       <img :src="img" alt="" class="blog-card__img">
     </div>
@@ -19,16 +22,15 @@
         {{ title }}
       </div>
 
-      <div class="blog-card__desc">
-        {{ description }}
-      </div>
+      <div class="blog-card__desc" v-html="description"></div>
     </div>
-  </div>
+  </nuxt-link>
 </template>
 
 <script>
 export default {
   props: {
+    id: Number,
     img: String,
     date: String,
     tag: String,

@@ -25,13 +25,14 @@
 export default {
   data() {
     return {
-      sortOptions: ['Сначала новые', 'Сначала старые', 'По популярности'],
+      sortOptions: ['Сначала новые', 'Сначала старые'],
       chosenOption: 'Сначала новые',
       dropdownState: false
     }
   },
   methods: {
     chose(name) {
+      this.$emit('sort', name)
       this.chosenOption = name
       this.dropdownState = false
     }

@@ -11,9 +11,9 @@
 
       <ul class="header__links">
         <nuxt-link tag="li" to="/" class="header__link">Главная</nuxt-link>
-        <nuxt-link tag="li" to="/archive" class="header__link">Архив номеров</nuxt-link>
-        <nuxt-link tag="li" to="/blog" class="header__link">Блог редактора</nuxt-link>
-        <nuxt-link tag="li" to="/authors" class="header__link">Авторы</nuxt-link>
+        <nuxt-link tag="li" to="/archive/page/1" class="header__link">Архив номеров</nuxt-link>
+        <nuxt-link tag="li" to="/blog/page/1" class="header__link">Блог редактора</nuxt-link>
+        <nuxt-link tag="li" to="/authors/page/1" class="header__link">Авторы</nuxt-link>
         <nuxt-link tag="li" to="/rules" class="header__link">Правила для авторов</nuxt-link>
         <nuxt-link tag="li" to="/other" class="header__link">Другие публикации</nuxt-link>
       </ul>

@@ -22,17 +22,17 @@
       <nuxt-link
           class="sidebar__link"
           tag="li"
-          to="/archive"
+          to="/archive/page/1"
           @click.native="closeSidebar">Архив номеров</nuxt-link>
       <nuxt-link
           class="sidebar__link"
           tag="li"
-          to="/blog"
+          to="/blog/page/1"
           @click.native="closeSidebar">Блог редактора</nuxt-link>
       <nuxt-link
           class="sidebar__link"
           tag="li"
-          to="/authors"
+          to="/authors/page/1"
           @click.native="closeSidebar">Авторы</nuxt-link>
       <nuxt-link
           class="sidebar__link"

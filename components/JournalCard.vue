@@ -16,13 +16,15 @@
         <div class="journal-card__item" v-if="tom">
           Том: <span>{{ tom }}</span>
         </div>
-        <div class="journal-card__link">
+        <a :href="link" target="_blank" class="journal-card__link">
           Прочитать
-        </div>
+        </a>
 
         <div class="journal-card__desc-box">
-          <div class="journal-card__desc" :class="{'journal-card__desc--active' : expandStatus}" v-if="description">
-            {{ description }}
+          <div class="journal-card__desc"
+               :class="{'journal-card__desc--active' : expandStatus}"
+               v-if="description"
+               v-html="description">
           </div>
 
           <div class="journal-card__expand" @click="toggleExpand">
@@ -35,8 +37,10 @@
     </div>
 
     <div class="journal-card__desc-box journal-card__desc-box--mobile">
-      <div class="journal-card__desc" :class="{'journal-card__desc--active' : expandStatus}" v-if="description">
-        {{ description }}
+      <div class="journal-card__desc"
+           :class="{'journal-card__desc--active' : expandStatus}"
+           v-if="description"
+           v-html="description">
       </div>
 
       <div class="journal-card__expand" @click="toggleExpand">
@@ -45,12 +49,12 @@
       </div>
     </div>
 
-    <button class="button journal-card__button">
+    <a :href="'https://sabadoryo.com/api/archives/' + id + '/download-document'" target="_blank" class="button journal-card__button">
       <svg width="24" height="24">
         <use href="../assets/img/icons.svg#download"></use>
       </svg>
       Загрузить
-    </button>
+    </a>
   </div>
 </template>
 
@@ -62,12 +66,16 @@ export default {
     }
   },
   props: {
+    id: {
+      type: Number,
+      default: null
+    },
     year: {
-      type: String,
+      type: Number,
       default: null
     },
     tom: {
-      type: String,
+      type: Number,
       default: null
     },
     img: {
@@ -81,12 +89,14 @@ export default {
     name: {
       type: String,
       default: null
-    }
+    },
+    link: String,
+    default: null
   },
   methods: {
     toggleExpand() {
       this.expandStatus = !this.expandStatus
-    }
+    },
   }
 }
 </script>
