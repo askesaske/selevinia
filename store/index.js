@@ -8,6 +8,7 @@ const createStore = () => {
             loadedArchive: [],
             loadedPosts: [],
             loadedPages: [],
+            loadedCategories: []
         },
         mutations: {
             setSidebarState(state, info) {
@@ -25,6 +26,9 @@ const createStore = () => {
             setPages(state, info) {
                 state.loadedPages = info
             },
+            setCategories(state, info) {
+                state.loadedCategories = info
+            }
         },
         actions: {
             async nuxtServerInit(VuexContext, context) {
@@ -36,6 +40,9 @@ const createStore = () => {
 
                 const pagesResponse = await context.$axios.get(process.env.API + 'pages')
                 VuexContext.commit('setPages', pagesResponse.data.data)
+
+                const categoriesResponse = await context.$axios.get(process.env.API + 'categories')
+                VuexContext.commit('setCategories', categoriesResponse.data.data.data)
             },
 
             setArchive(vuexContext, archiveInfo) {
@@ -56,6 +63,9 @@ const createStore = () => {
             setSearchState(vuexContext, searchState) {
                 vuexContext.commit('setSearchState', searchState)
             },
+            setCategories(vuexContext, categoriesState) {
+                vuexContext.commit('setCategories', categoriesState)
+            }
         },
         getters: {
             loadedSidebarState(state) {
@@ -73,6 +83,9 @@ const createStore = () => {
             loadedPages(state) {
                 return state.loadedPages
             },
+            loadedCategories(state) {
+                return state.loadedCategories
+            }
         }
     })
 }

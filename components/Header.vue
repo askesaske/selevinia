@@ -15,7 +15,7 @@
         <nuxt-link tag="li" to="/blog/page/1" class="header__link">Блог редактора</nuxt-link>
         <nuxt-link tag="li" to="/authors/page/1" class="header__link">Авторы</nuxt-link>
         <nuxt-link tag="li" to="/rules" class="header__link">Правила для авторов</nuxt-link>
-        <nuxt-link tag="li" to="/other" class="header__link">Другие публикации</nuxt-link>
+<!--        <nuxt-link tag="li" to="/other" class="header__link">Другие публикации</nuxt-link>-->
       </ul>
 
       <div class="header__search">

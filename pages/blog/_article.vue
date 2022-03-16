@@ -44,8 +44,8 @@
             <div class="article-page__date">
               {{ date }}
             </div>
-            <div class="article-page__tag">
-              Энтомология
+            <div class="article-page__tag" v-if="blog">
+              {{ blog.name }}
             </div>
           </div>
 
@@ -91,17 +91,17 @@
           </div>
 
           <div class="article-page__items">
-            <div class="article-page__item" v-for="i in 8">
+            <div class="article-page__item" v-for="item in related">
               <div class="article-page__item-row">
                 <div class="article-page__date">
-                  12 сентябрь 2021
+                  {{ $dateFns.format(item.created_at, 'dd MMMM yyyy') }}
                 </div>
                 <div class="article-page__item-tag">
-                  Герпетология
+                  {{ item.category.name }}
                 </div>
               </div>
               <div class="article-page__item-title">
-                Равным образом, реализация намеченных плановых заданий требует
+                {{ item.name }}
               </div>
             </div>
           </div>
@@ -128,7 +128,8 @@ export default {
           link: ''
         }],
       blog: {},
-      date: null
+      date: null,
+      related: []
     }
   },
   components: {
@@ -139,7 +140,13 @@ export default {
         .then(response => {
           this.blog = response.data.data
           this.date = this.$dateFns.format(response.data.data.created_at, 'dd MMMM yyyy')
-          console.log(response.data.data)
+
+          this.$axios.get(process.env.API + 'posts/related/' + response.data.data.category_id)
+              .then(response => {
+                this.related = response.data.data.splice(0, 1)
+                console.log(response.data.data)
+              })
+              .catch(e => console.log(e))
         })
         .catch(e => console.log(e))
   }

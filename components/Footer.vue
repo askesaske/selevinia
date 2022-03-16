@@ -61,9 +61,9 @@
         <nuxt-link tag="div" to="/rules" class="footer__text footer__text--mb10 footer__text--link">
           Правила для авторов
         </nuxt-link>
-        <nuxt-link tag="div" to="/other" class="footer__text footer__text--mb10 footer__text--link">
-          Другие публикации
-        </nuxt-link>
+<!--        <nuxt-link tag="div" to="/other" class="footer__text footer__text&#45;&#45;mb10 footer__text&#45;&#45;link">-->
+<!--          Другие публикации-->
+<!--        </nuxt-link>-->
 
       </div>
 

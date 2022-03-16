@@ -31,12 +31,20 @@
   &__title {
     @include text-style(2.4rem, 600, $title-color);
     margin-bottom: 13px;
+
+    &--centered {
+      text-align: center;
+    }
   }
 
   &__subtitle {
     @include text-style(1.6rem, 400, $text-color);
     line-height: 22px;
     margin-bottom: 20px;
+
+    &--centered {
+      text-align: center;
+    }
   }
 
   &__input-box {
@@ -67,6 +75,11 @@
     background-color: $main-color;
     border-radius: 2px;
     @include text-style(1.6rem, 600, $white-color);
+  }
+
+  &__success-icon {
+    display: block;
+    margin: 0 auto 10px;
   }
 
   @include respond(phone) {

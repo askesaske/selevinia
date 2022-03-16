@@ -1,6 +1,6 @@
 <template>
   <div class="modal">
-    <div class="modal__wrapper">
+    <div class="modal__wrapper" v-if="!status">
       <svg width="20" height="20" class="modal__cancel" @click="$emit('close')">
         <use href="../assets/img/icons.svg#cancel"></use>
       </svg>
@@ -24,6 +24,24 @@
         Подписаться
       </button>
     </div>
+
+    <div class="modal__wrapper" v-else>
+      <svg width="20" height="20" class="modal__cancel" @click="$emit('close')">
+        <use href="../assets/img/icons.svg#cancel"></use>
+      </svg>
+
+      <svg width="80" height="80" class="modal__success-icon">
+        <use href="../assets/img/icons.svg#big-check"></use>
+      </svg>
+
+      <div class="modal__title modal__title--centered">
+        Поздравляем!
+      </div>
+
+      <div class="modal__subtitle modal__subtitle--centered">
+        Вы успешно подписались на рассылку от Selevinia
+      </div>
+    </div>
   </div>
 </template>
 
@@ -31,7 +49,8 @@
 export default {
   data() {
     return {
-      mail: ''
+      mail: '',
+      status: false
     }
   },
   methods: {
@@ -39,7 +58,11 @@ export default {
       this.$axios.post(process.env.API + 'subscriptions ', {
         email: this.mail
       })
-          .then(response => console.log(response))
+          .then(response => {
+            if (response.data.code === 200) {
+              this.status = true
+            }
+          })
           .catch(e => console.log(e))
     }
   }

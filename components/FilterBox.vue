@@ -13,7 +13,9 @@
 
       <div class="filter-box__dropdown"
            :class="{'filter-box__dropdown--active' : selectStatus}">
-        <div class="filter-box__dropdown-item" v-for="i in 3" @click="selectItem(i)">{{ i }}</div>
+        <div class="filter-box__dropdown-item"
+             v-for="c in loadedCategories"
+             @click="selectItem(c.name, c.id)" >{{ c.name }}</div>
       </div>
     </div>
     <button class="filter-box__btn">
@@ -36,10 +38,19 @@ export default {
     toggleSelect() {
       this.selectStatus = !this.selectStatus
     },
-    selectItem(i) {
-      this.selected = i
+    selectItem(name, id) {
+      this.selected = name
       this.selectStatus = false
+      this.$emit('sortByCategory', id)
     }
+  },
+  computed: {
+    loadedCategories() {
+      return this.$store.getters.loadedCategories
+    }
+  },
+  mounted() {
+    console.log(this.loadedCategories)
   }
 }
 </script>

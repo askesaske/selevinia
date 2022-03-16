@@ -39,11 +39,11 @@
           tag="li"
           to="/rules"
           @click.native="closeSidebar">Правила для авторов</nuxt-link>
-      <nuxt-link
-          class="sidebar__link"
-          tag="li"
-          to="/other"
-          @click.native="closeSidebar">Другие публикации</nuxt-link>
+<!--      <nuxt-link-->
+<!--          class="sidebar__link"-->
+<!--          tag="li"-->
+<!--          to="/other"-->
+<!--          @click.native="closeSidebar">Другие публикации</nuxt-link>-->
     </ul>
   </div>
 </template>
