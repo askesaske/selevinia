@@ -110,7 +110,7 @@ export default {
     }
   },
   mounted() {
-    this.$axios.get(process.env.API + 'archives?sort=-created_at&itemsPerPage=3&page=' + this.currentPage)
+    this.$axios.get(process.env.API + 'archives?itemsPerPage=3&page=' + this.currentPage)
         .then(response => {
           this.newPosts = response.data.data.data
           this.total = response.data.data.links.length - 2
@@ -118,7 +118,7 @@ export default {
         })
         .catch(e => console.log(e))
 
-    this.$axios.get(process.env.API + 'archives?itemsPerPage=3&page=' + this.currentPage)
+    this.$axios.get(process.env.API + 'archives?sort=-created_at&itemsPerPage=3&page=' + this.currentPage)
         .then(response => {
           this.oldPosts = response.data.data.data
           this.total = response.data.data.links.length - 2

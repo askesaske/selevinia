@@ -77,15 +77,15 @@
             <use href="../assets/img/icons.svg#mail"></use>
           </svg>
 
-          selevinia@gmail.com
+          ibisbilkovshar@mail.ru
         </div>
-        <div class="footer__text footer__text--mb10">
-          <svg width="24" height="24">
-            <use href="../assets/img/icons.svg#mail"></use>
-          </svg>
+<!--        <div class="footer__text footer__text&#45;&#45;mb10">-->
+<!--          <svg width="24" height="24">-->
+<!--            <use href="../assets/img/icons.svg#mail"></use>-->
+<!--          </svg>-->
 
-          selevinia@gmail.com
-        </div>
+<!--          ibisbilkovshar@mail.ru-->
+<!--        </div>-->
       </div>
 
       <div class="footer__col">

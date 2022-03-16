@@ -32,7 +32,7 @@ const createStore = () => {
         },
         actions: {
             async nuxtServerInit(VuexContext, context) {
-                const archiveResponse = await context.$axios.get(process.env.API + 'archives?sort=-created_at&itemsPerPage=1')
+                const archiveResponse = await context.$axios.get(process.env.API + 'archives?itemsPerPage=1')
                 VuexContext.commit('setArchiveState', archiveResponse.data.data.data)
 
                 const postsResponse = await context.$axios.get(process.env.API + 'posts?include=category&sort=-created_at&itemsPerPage=2')
