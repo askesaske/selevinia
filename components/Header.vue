@@ -65,7 +65,10 @@ export default {
   },
   methods: {
     search() {
-      this.$router.push('/search/' + this.searchText)
+      this.$store.commit('setSearchState', true)
+      if (this.loadedSearchState) {
+        this.$router.push('/search/' + this.searchText)
+      }
     },
     closeSearch() {
       this.$store.commit('setSearchState', false)
