@@ -10,11 +10,26 @@
     <div class="blog-page__main">
 
       <div class="blog-page__container">
-        <filter-box class="blog-page__filter" @sortByCategory="categorySort"></filter-box>
+<!--        <filter-box class="blog-page__filter"-->
+<!--                    @sortByCategory="categorySort"-->
+<!--                    @searchText="searchText">-->
+<!--        </filter-box>-->
 
-        <sort-box class="blog-page__sort" @sort="sort"></sort-box>
+        <sort-box class="blog-page__sort" @sort="getPosts"></sort-box>
 
         <div class="blog-page__cards" v-if="sortState === 'Сначала новые'">
+          <blog-card v-for="post in pinnedPost"
+                     v-if="clicked ? post.category_id === chosenCategoryId : true"
+                     with-description
+                     :key="post.id"
+                     :id="post.id"
+                     :img="post.preview_big_image_url"
+                     :date="$dateFns.format(post.created_at, 'dd MMMM yyyy')"
+                     :tag="post.category.name"
+                     :title="post.name"
+                     :description="post.content">
+          </blog-card>
+
           <blog-card v-for="post in newPosts"
                      v-if="clicked ? post.category_id === chosenCategoryId : true"
                      with-description
@@ -29,6 +44,17 @@
         </div>
 
         <div class="blog-page__cards" v-else>
+          <blog-card v-for="post in pinnedPost"
+                     v-if="clicked ? post.category_id === chosenCategoryId : true"
+                     with-description
+                     :key="post.id"
+                     :id="post.id"
+                     :img="post.preview_big_image_url"
+                     :date="$dateFns.format(post.created_at, 'dd MMMM yyyy')"
+                     :tag="post.category.name"
+                     :title="post.name"
+                     :description="post.content">
+          </blog-card>
           <blog-card v-for="post in oldPosts"
                      v-if="clicked ? post.category_id === chosenCategoryId : true"
                      with-description
@@ -54,6 +80,7 @@
       </div>
 
     </div>
+    <loader-block v-if="loading"></loader-block>
   </div>
 </template>
 
@@ -63,6 +90,7 @@ import FilterBox from "@/components/FilterBox";
 import SortBox from "@/components/SortBox";
 import BlogCard from "@/components/BlogCard";
 import PaddingBox from "@/components/PaddingBox";
+import LoaderBlock from "@/components/LoaderBlock";
 
 export default {
   components: {
@@ -70,7 +98,8 @@ export default {
     FilterBox,
     SortBox,
     BlogCard,
-    PaddingBox
+    PaddingBox,
+
   },
   data() {
     return {
@@ -84,7 +113,8 @@ export default {
       oldPosts: [],
       currentPage: parseInt(this.$route.params.number),
       chosenCategoryId: null,
-      clicked: false
+      clicked: false,
+      loading: false
     }
   },
   computed: {
@@ -93,12 +123,19 @@ export default {
     },
     showChosen() {
       return this.chosenCategoryId === null;
+    },
+    pinnedPost() {
+      return this.$store.getters.loadedPinnedPost
     }
   },
   methods: {
-    sort(val) {
-      if (this.sortState !== val) {
-        this.sortState = val
+    searchText(val) {
+      if (this.sortState === 'Сначала новые') {
+        this.newPosts.forEach(item => {
+          if (item.name.includes(val)) {
+            item.show = true
+          }
+        })
       }
     },
     categorySort(id) {
@@ -120,29 +157,43 @@ export default {
     pageChosen(page) {
       this.$router.push('/blog/page/' + page)
     },
-    // showChosen(id) {
-    //   if (this.chosenCategoryId === null) {
-    //     return id
-    //   } else {
-    //     return this.chosenCategoryId
-    //   }
-    // },
+    getPosts(sortState) {
+      this.sortState = sortState
+      if (sortState === 'Сначала новые') {
+        this.$axios.get(process.env.API + 'posts?include=category&sort=-created_at&itemsPerPage=6&page=' + this.currentPage)
+            .then(response => {
+              this.loading = true
+              this.newPosts = response.data.data.data
+              this.total = response.data.data.links.length - 2
+              const index = this.newPosts.findIndex(item => item.id === 5)
+              if (index > -1) {
+                this.newPosts.splice(index, 1);
+              }
+            })
+            .catch(e => console.log(e))
+            .finally(() => {
+              this.loading = false
+            })
+      } else {
+        this.$axios.get(process.env.API + 'posts?include=category&itemsPerPage=6&page=' + this.currentPage)
+            .then(response => {
+              this.loading = true
+              this.oldPosts = response.data.data.data
+              this.total = response.data.data.links.length - 2
+              const index = this.oldPosts.findIndex(item => item.id === 5)
+              if (index > -1) {
+                this.oldPosts.splice(index, 1);
+              }
+            })
+            .catch(e => console.log(e))
+            .finally(() => {
+              this.loading = false
+            })
+      }
+    }
   },
   mounted() {
-    this.$axios.get(process.env.API + 'posts?include=category&sort=-created_at&itemsPerPage=6&page=' + this.currentPage)
-        .then(response => {
-          this.newPosts = response.data.data.data
-          this.total = response.data.data.links.length - 2
-          console.log(response.data.data.data)
-        })
-        .catch(e => console.log(e))
-
-    this.$axios.get(process.env.API + 'posts?include=category&itemsPerPage=6&page=' + this.currentPage)
-        .then(response => {
-          this.oldPosts = response.data.data.data
-          this.total = response.data.data.links.length - 2
-        })
-        .catch(e => console.log(e))
+    this.getPosts('Сначала новые')
   },
 }
 </script>

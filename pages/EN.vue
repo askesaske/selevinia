@@ -2,9 +2,10 @@
   <div class="rules-page">
     <info-block class="authors-page__info-block"
                 :image-url="require('assets/img/en-img.svg')"
-                :heading="'English version'"
+                :heading="'Selevinia'"
                 :subtitle="englishPageDescription[0].value"
-                :breadcrumb="breadcrumb">
+                :breadcrumb="breadcrumb"
+                italic>
     </info-block>
 
     <div class="rules-page__main">

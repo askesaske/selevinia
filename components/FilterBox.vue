@@ -1,6 +1,6 @@
 <template>
   <div class="filter-box">
-    <input type="text" class="filter-box__input" placeholder="Введите поисковую фразу">
+    <input type="text" class="filter-box__input" placeholder="Введите поисковую фразу" v-model="searchText">
     <div class="filter-box__select-box">
       <div class="filter-box__select"
            @click="toggleSelect"
@@ -31,7 +31,8 @@ export default {
   data() {
     return {
       selectStatus: false,
-      selected: 'По категории'
+      selected: 'По категории',
+      searchText: ''
     }
   },
   methods: {
@@ -42,6 +43,11 @@ export default {
       this.selected = name
       this.selectStatus = false
       this.$emit('sortByCategory', id)
+    }
+  },
+  watch: {
+    searchText() {
+      this.$emit('searchText', this.searchText)
     }
   },
   computed: {

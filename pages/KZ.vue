@@ -2,9 +2,10 @@
   <div class="rules-page">
     <info-block class="authors-page__info-block"
                 :image-url="require('assets/img/kz-img.svg')"
-                :heading="'қазақша'"
+                :heading="'Selevinia'"
                 :subtitle="kazakhPageDescription[0].value"
-                :breadcrumb="breadcrumb">
+                :breadcrumb="breadcrumb"
+                italic>
     </info-block>
 
     <div class="rules-page__main">

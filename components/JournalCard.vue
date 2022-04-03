@@ -8,7 +8,7 @@
 
       <div class="journal-card__info">
         <div class="journal-card__item" v-if="name">
-          Название:: <span>{{ name }}</span>
+          Название: <span>{{ name }}</span>
         </div>
         <div class="journal-card__item" v-if="year">
           Год: <span>{{ year }}</span>

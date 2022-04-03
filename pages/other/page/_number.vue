@@ -1,25 +1,25 @@
 <template>
-  <div class="archive-page">
-    <info-block class="archive-page__info-block"
-                :image-url="require('assets/img/archive-img.svg')"
-                :heading="'Архив'"
-                :subtitle="archivePage[0].value"
+  <div class="other-page">
+    <info-block class="other-page__info-block"
+                :image-url="require('assets/img/other-img.svg')"
+                :heading="'Другие публикации'"
+                :subtitle="otherPage[0].value"
                 :breadcrumb="breadcrumb">
     </info-block>
 
-    <div class="archive-page__main">
+    <div class="other-page__main">
 
-      <div class="archive-page__container">
-<!--        <filter-box class="archive-page__filter"></filter-box>-->
+      <div class="other-page__container">
 
-        <sort-box class="archive-page__sort" @sort="sort"></sort-box>
+<!--        <search-box class="other-page__search"></search-box>-->
+
+        <sort-box class="other-page__sort" @sort="sort"></sort-box>
 
         <div class="archive-page__cards" v-if="sortState === 'Сначала новые'">
           <journal-card class="archive-page__journal"
-                        :year="post.year"
-                        :tom="post.tome"
+                        :name="post.title"
                         :description="post.description"
-                        :img="post.preview_big_image_url"
+                        :img="post.image_url"
                         :id="post.id"
                         :link="post.document_url"
                         v-for="post in newPosts"
@@ -29,10 +29,9 @@
 
         <div class="archive-page__cards" v-else>
           <journal-card class="archive-page__journal"
-                        :year="post.year"
-                        :tom="post.tome"
+                        :name="post.title"
                         :description="post.description"
-                        :img="post.preview_big_image_url"
+                        :img="post.image_url"
                         :id="post.id"
                         :link="post.document_url"
                         v-for="post in oldPosts"
@@ -57,7 +56,7 @@
 
 <script>
 import InfoBlock from "@/components/InfoBlock";
-import FilterBox from "@/components/FilterBox";
+import SearchBox from "@/components/SearchBox";
 import SortBox from "@/components/SortBox";
 import PaddingBox from "@/components/PaddingBox";
 import JournalCard from "@/components/JournalCard";
@@ -66,7 +65,7 @@ import LoaderBlock from "@/components/LoaderBlock";
 export default {
   components: {
     InfoBlock,
-    FilterBox,
+    SearchBox,
     SortBox,
     PaddingBox,
     JournalCard,
@@ -75,7 +74,7 @@ export default {
   data() {
     return {
       breadcrumb: [{
-        name: 'Архив',
+        name: 'Другие публикации',
         link: ''
       }],
       sortState: 'Сначала новые',
@@ -83,12 +82,12 @@ export default {
       newPosts: [],
       oldPosts: [],
       currentPage: parseInt(this.$route.params.number),
-      loading: true
+      loading: false
     }
   },
   computed: {
-    archivePage() {
-      return this.$store.getters.loadedPages.filter(item => item.key === 'archiveText') || []
+    otherPage() {
+      return this.$store.getters.loadedPages.filter(item => item.key === 'othersText') || []
     }
   },
   methods: {
@@ -100,21 +99,21 @@ export default {
     prevPage() {
       if (this.currentPage > 1) {
         this.currentPage--;
-        this.$router.push('/archive/page/' + this.currentPage)
+        this.$router.push('/other/page/' + this.currentPage)
       }
     },
     nextPage() {
       if (this.currentPage < this.total) {
         this.currentPage++;
-        this.$router.push('/archive/page/' + this.currentPage)
+        this.$router.push('/other/page/' + this.currentPage)
       }
     },
     pageChosen(page) {
-      this.$router.push('/archive/page/' + page)
+      this.$router.push('/other/page/' + page)
     }
   },
   mounted() {
-    this.$axios.get(process.env.API + 'archives?itemsPerPage=3&page=' + this.currentPage)
+    this.$axios.get(process.env.API + 'publications?itemsPerPage=3&page=' + this.currentPage)
         .then(response => {
           this.loading = true
           this.newPosts = response.data.data.data
@@ -125,7 +124,7 @@ export default {
           this.loading = false
         })
 
-    this.$axios.get(process.env.API + 'archives?sort=-created_at&itemsPerPage=3&page=' + this.currentPage)
+    this.$axios.get(process.env.API + 'publications?sort=-created_at&itemsPerPage=3&page=' + this.currentPage)
         .then(response => {
           this.loading = true
           this.oldPosts = response.data.data.data

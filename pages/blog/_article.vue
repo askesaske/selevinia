@@ -15,28 +15,7 @@
             Поделиться:
           </div>
 
-          <div class="article-page__socials">
-            <a href="#" class="article-page__social">
-              <svg width="30" height="30">
-                <use href="../../assets/img/icons.svg#twitter-2"></use>
-              </svg>
-            </a>
-            <a href="#" class="article-page__social">
-              <svg width="30" height="30">
-                <use href="../../assets/img/icons.svg#fb-2"></use>
-              </svg>
-            </a>
-            <a href="#" class="article-page__social">
-              <svg width="30" height="30">
-                <use href="../../assets/img/icons.svg#vk-2"></use>
-              </svg>
-            </a>
-            <a href="#" class="article-page__social">
-              <svg width="30" height="30">
-                <use href="../../assets/img/icons.svg#tg-2"></use>
-              </svg>
-            </a>
-          </div>
+          <share-social :title="blog.name"></share-social>
         </div>
 
         <div class="article-page__main">
@@ -109,11 +88,14 @@
 
       </div>
     </div>
+    <loader-block v-if="loading"></loader-block>
   </div>
 </template>
 
 <script>
 import BreadCrumb from "@/components/BreadCrumb";
+import ShareSocial from "@/components/ShareSocial";
+import LoaderBlock from "@/components/LoaderBlock";
 
 export default {
   data() {
@@ -129,26 +111,30 @@ export default {
         }],
       blog: {},
       date: null,
-      related: []
+      related: [],
+      loading: false
     }
   },
   components: {
-    BreadCrumb
+    BreadCrumb,
+    ShareSocial
   },
   mounted() {
     this.$axios.get(process.env.API + 'posts/' + this.$route.params.article + '?include=category')
         .then(response => {
+          this.loading = true
           this.blog = response.data.data
           this.date = this.$dateFns.format(response.data.data.created_at, 'dd MMMM yyyy')
 
           this.$axios.get(process.env.API + 'posts/related/' + response.data.data.category_id)
               .then(response => {
                 this.related = response.data.data.splice(0, 1)
-                console.log(response.data.data)
               })
-              .catch(e => console.log(e))
         })
         .catch(e => console.log(e))
+        .finally(() => {
+          this.loading = false
+        })
   }
 }
 </script>

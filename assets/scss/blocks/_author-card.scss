@@ -1,0 +1,34 @@
+.author-card {
+  background: $white-color;
+  box-shadow: 0 1px 18px rgba(222, 222, 222, 0.35);
+  border-radius: 4px;
+  padding: 20px;
+
+  &__label {
+    @include text-style(1.4rem, 500, $main-color);
+    line-height: 19px;
+    margin-bottom: 10px;
+  }
+
+  &__row {
+    display: flex;
+    align-items: flex-start;
+
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__light {
+    @include text-style(1.6rem, 500, #BDBDBD);
+    width: 140px;
+    line-height: 21px;
+    margin-right: 105px;
+    flex-shrink: 0;
+  }
+
+  &__text {
+    @include text-style(1.6rem, 500, $text-color);
+    line-height: 21px;
+  }
+}

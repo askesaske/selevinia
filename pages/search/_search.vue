@@ -8,29 +8,56 @@
 
       <div class="search-page__heading">
         Результаты поиска
-        <span>10</span>
+        <span>{{ total }}</span>
       </div>
 
       <div class="search-page__results">
         <journal-card class="search-page__journal"
-                      :year="'2021'"
-                      :tom="'29'"
-                      :description="'Description'"
-                      :img="'https://anime-fans.ru/wp-content/uploads/2021/05/Ochen-krasivye-devochki-anime-kartinki-i-foto_22.jpg'">
+                      v-if="searchItems.archives.length > 0"
+                      v-for="item in searchItems.archives"
+                      :key="Math.random() + item.id"
+                      :id="item.id"
+                      :year="item.year"
+                      :tom="item.tome"
+                      :description="item.description"
+                      :img="item.preview_big_image_url">
         </journal-card>
 
         <blog-card class="search-page__blog-card"
-                   v-for="i in 2"
-                   :key="i"
+                   v-if="searchItems.posts.length > 0"
+                   v-for="item in searchItems.posts"
+                   :key="Math.random() + item.id"
+                   :id="item.id"
                    with-description
-                   :img="'https://i.pinimg.com/736x/57/3f/22/573f22a1aa17b366f5489745dc4704e1.jpg'"
-                   :date="'12 сентябрь 2021'"
-                   :tag="'Герпетология'"
-                   :title="'Равным образом, реализация намеченных плановых заданий требует'"
-                   :description="'afsdfasdfasdfasd'">
+                   :img="item.preview_big_image_url"
+                   :date="$dateFns.format(item.created_at, 'dd MMMM yyyy')"
+                   :tag="item.category.name"
+                   :title="item.name"
+                   :description="item.content">
         </blog-card>
+
+        <author-card class="search-page__author-card"
+                     v-if="searchItems.authors.length > 0"
+                     v-for="item in searchItems.authors"
+                     :key="item.id"
+                     :name="item.full_name"
+                     :description="item.about"
+                     :articles="item.articles">
+        </author-card>
+
+        <journal-card class="search-page__journal"
+                      v-if="searchItems.publications.length > 0"
+                      v-for="item in searchItems.publications"
+                      :name="item.title"
+                      :description="item.description"
+                      :img="item.image_url"
+                      :id="item.id"
+                      :link="item.document_url"
+                      :key="Math.random() + item.id">
+        </journal-card>
       </div>
     </div>
+    <loader-block v-if="loading"></loader-block>
   </div>
 </template>
 
@@ -38,12 +65,16 @@
 import breadCrumb from "@/components/BreadCrumb";
 import JournalCard from "@/components/JournalCard";
 import BlogCard from "@/components/BlogCard";
+import AuthorCard from "@/components/AuthorCard";
+import LoaderBlock from "@/components/LoaderBlock";
 
 export default {
   components: {
     breadCrumb,
     JournalCard,
-    BlogCard
+    BlogCard,
+    AuthorCard,
+    LoaderBlock
   },
   data() {
     return {
@@ -52,8 +83,24 @@ export default {
           name: 'Результаты поиска',
           link: ''
         }
-      ]
+      ],
+      searchItems: {},
+      total: 0,
+      loading: false
     }
+  },
+  mounted() {
+    this.$axios.get(process.env.API + 'global-search?search=' + this.$route.params.search)
+        .then(response => {
+          this.loading = true
+          this.searchItems = response.data.data
+          this.total = response.data.data.archives.length + response.data.data.authors.length +
+              response.data.data.posts.length + response.data.data.publications.length
+        })
+        .catch(e => console.log(e))
+        .finally(() => {
+          this.loading = false
+        })
   }
 }
 </script>

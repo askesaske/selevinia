@@ -14,31 +14,31 @@
           © А.Ф. Ковшарь
         </div>
 
-        <div class="footer__socials">
-          <a href="#" class="footer__social" target="_blank">
-            <svg width="30" height="30">
-              <use href="../assets/img/icons.svg#tg"></use>
-            </svg>
-          </a>
+<!--        <div class="footer__socials">-->
+<!--          <a href="#" class="footer__social" target="_blank">-->
+<!--            <svg width="30" height="30">-->
+<!--              <use href="../assets/img/icons.svg#tg"></use>-->
+<!--            </svg>-->
+<!--          </a>-->
 
-          <a href="#" class="footer__social" target="_blank">
-            <svg width="30" height="30">
-              <use href="../assets/img/icons.svg#fb"></use>
-            </svg>
-          </a>
+<!--          <a href="#" class="footer__social" target="_blank">-->
+<!--            <svg width="30" height="30">-->
+<!--              <use href="../assets/img/icons.svg#fb"></use>-->
+<!--            </svg>-->
+<!--          </a>-->
 
-          <a href="#" class="footer__social" target="_blank">
-            <svg width="30" height="30">
-              <use href="../assets/img/icons.svg#twitter"></use>
-            </svg>
-          </a>
+<!--          <a href="#" class="footer__social" target="_blank">-->
+<!--            <svg width="30" height="30">-->
+<!--              <use href="../assets/img/icons.svg#twitter"></use>-->
+<!--            </svg>-->
+<!--          </a>-->
 
-          <a href="#" class="footer__social" target="_blank">
-            <svg width="30" height="30">
-              <use href="../assets/img/icons.svg#vk"></use>
-            </svg>
-          </a>
-        </div>
+<!--          <a href="#" class="footer__social" target="_blank">-->
+<!--            <svg width="30" height="30">-->
+<!--              <use href="../assets/img/icons.svg#vk"></use>-->
+<!--            </svg>-->
+<!--          </a>-->
+<!--        </div>-->
       </div>
 
       <div class="footer__col">
@@ -61,9 +61,9 @@
         <nuxt-link tag="div" to="/rules" class="footer__text footer__text--mb10 footer__text--link">
           Правила для авторов
         </nuxt-link>
-<!--        <nuxt-link tag="div" to="/other" class="footer__text footer__text&#45;&#45;mb10 footer__text&#45;&#45;link">-->
-<!--          Другие публикации-->
-<!--        </nuxt-link>-->
+        <nuxt-link tag="div" to="/other/page/1" class="footer__text footer__text--mb10 footer__text--link">
+          Другие публикации
+        </nuxt-link>
 
       </div>
 
@@ -98,8 +98,8 @@
         </button>
 
         <div class="footer__text footer__text--mb10">Сайт разработан при поддержке АСБК</div>
-        <div class="footer__text footer__text--dnone footer__text--mb10">Автор лого Selevinia: Т. Е. Лопатина</div>
-        <div class="footer__text footer__text--dnone footer__text--mb10">Автор штриховых рисунков: Ф. Ф. Карпов</div>
+        <div class="footer__text footer__text footer__text--mb10">Автор лого Selevinia: Т. Е. Лопатина</div>
+        <div class="footer__text footer__text footer__text--mb10">Автор штриховых рисунков: Ф. Ф. Карпов</div>
       </div>
 
     </div>

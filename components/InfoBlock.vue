@@ -5,7 +5,11 @@
 
       <div class="info-block__row">
         <div class="info-block__text">
-          <h3 class="info-block__heading">
+          <h3 class="info-block__heading info-block__heading--italic" v-if="italic">
+            {{ heading }}
+          </h3>
+
+          <h3 class="info-block__heading" v-else>
             {{ heading }}
           </h3>
 
@@ -40,6 +44,10 @@ export default {
     breadcrumb: {
       type: Array,
       default: null
+    },
+    italic: {
+      type: Boolean,
+      default: false
     }
   },
   components: {

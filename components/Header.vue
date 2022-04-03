@@ -15,11 +15,11 @@
         <nuxt-link tag="li" to="/blog/page/1" class="header__link">Блог редактора</nuxt-link>
         <nuxt-link tag="li" to="/authors/page/1" class="header__link">Авторы</nuxt-link>
         <nuxt-link tag="li" to="/rules" class="header__link">Правила для авторов</nuxt-link>
-<!--        <nuxt-link tag="li" to="/other" class="header__link">Другие публикации</nuxt-link>-->
+        <nuxt-link tag="li" to="/other/page/1" class="header__link">Другие публикации</nuxt-link>
       </ul>
 
       <div class="header__search">
-        <input type="text" class="header__input" placeholder="Введите поисковую фразу">
+        <input type="text" class="header__input" placeholder="Введите поисковую фразу" v-model="searchText">
 
         <button class="header__btn" @click="search">
           <svg width="24" height="24">
@@ -54,7 +54,8 @@ export default {
   },
   data() {
     return {
-      searchStatus: false
+      searchStatus: false,
+      searchText: ''
     }
   },
   computed: {
@@ -64,7 +65,7 @@ export default {
   },
   methods: {
     search() {
-      this.$store.commit('setSearchState', true)
+      this.$router.push('/search/' + this.searchText)
     },
     closeSearch() {
       this.$store.commit('setSearchState', false)

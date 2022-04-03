@@ -1,4 +1,5 @@
 import Vuex from 'vuex';
+import Vue from "vue";
 
 const createStore = () => {
     return new Vuex.Store({
@@ -8,7 +9,8 @@ const createStore = () => {
             loadedArchive: [],
             loadedPosts: [],
             loadedPages: [],
-            loadedCategories: []
+            loadedCategories: [],
+            loadedPinnedPost: {}
         },
         mutations: {
             setSidebarState(state, info) {
@@ -28,6 +30,9 @@ const createStore = () => {
             },
             setCategories(state, info) {
                 state.loadedCategories = info
+            },
+            setPinnedPost(state, info) {
+                state.loadedPinnedPost = info.filter(item => item.id === 5)
             }
         },
         actions: {
@@ -43,20 +48,20 @@ const createStore = () => {
 
                 const categoriesResponse = await context.$axios.get(process.env.API + 'categories')
                 VuexContext.commit('setCategories', categoriesResponse.data.data.data)
+
+                const pinnedPostResponse = await context.$axios.get(process.env.API + 'posts?include=category')
+                VuexContext.commit('setPinnedPost', pinnedPostResponse.data.data.data)
             },
 
             setArchive(vuexContext, archiveInfo) {
                 vuexContext.commit('setArchiveState', archiveInfo)
             },
-
             setPosts(vuexContext, postsInfo) {
                 vuexContext.commit('setPosts', postsInfo)
             },
-
             setPages(vuexContext, pagesInfo) {
                 vuexContext.commit('setPages', pagesInfo)
             },
-
             setSidebarState(vuexContext, sidebarState) {
                 vuexContext.commit('setSidebarState', sidebarState)
             },
@@ -65,6 +70,9 @@ const createStore = () => {
             },
             setCategories(vuexContext, categoriesState) {
                 vuexContext.commit('setCategories', categoriesState)
+            },
+            setPinnedPost(vuexContext, pinnedPostState) {
+                vuexContext.commit('setPinnedPost', pinnedPostState)
             }
         },
         getters: {
@@ -85,6 +93,9 @@ const createStore = () => {
             },
             loadedCategories(state) {
                 return state.loadedCategories
+            },
+            loadedPinnedPost(state) {
+                return state.loadedPinnedPost
             }
         }
     })

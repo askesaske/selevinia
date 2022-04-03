@@ -11,7 +11,7 @@
 
       <div class="authors-page__container">
 
-        <search-box class="authors-page__search"></search-box>
+<!--        <search-box class="authors-page__search"></search-box>-->
 
         <sort-box class="authors-page__sort" @sort="sort"></sort-box>
 
@@ -27,7 +27,7 @@
           </thead>
           <tbody v-for="(author, k) in newAuthors" :key="author.id">
           <tr :class="{'table__shadow' : dropdownState === author.id}">
-            <td class="table__sm">{{ k + 1 }}</td>
+            <td class="table__sm">{{ startFrom + k }}</td>
             <td>{{ author.full_name }}</td>
             <td>
               <span class="table__about">
@@ -90,7 +90,7 @@
           </thead>
           <tbody v-for="(author, k) in oldAuthors" :key="author.id">
           <tr :class="{'table__shadow' : dropdownState === author.id}">
-            <td class="table__sm">{{ k + 1 }}</td>
+            <td class="table__sm">{{ startFrom + k }}</td>
             <td>{{ author.full_name }}</td>
             <td>
               <span class="table__about">
@@ -152,6 +152,7 @@
       </div>
 
     </div>
+    <loader-block v-if="loading"></loader-block>
   </div>
 </template>
 
@@ -161,6 +162,7 @@ import FilterBox from "@/components/FilterBox";
 import SortBox from "@/components/SortBox";
 import PaddingBox from "@/components/PaddingBox";
 import SearchBox from "@/components/SearchBox";
+import LoaderBlock from "@/components/LoaderBlock";
 
 export default {
   components: {
@@ -168,7 +170,8 @@ export default {
     FilterBox,
     SortBox,
     PaddingBox,
-    SearchBox
+    SearchBox,
+    LoaderBlock
   },
   data() {
     return {
@@ -181,7 +184,9 @@ export default {
       total: 1,
       newAuthors: [],
       oldAuthors: [],
-      currentPage: parseInt(this.$route.params.number)
+      currentPage: parseInt(this.$route.params.number),
+      startFrom: 1,
+      loading: false
     }
   },
   computed: {
@@ -224,18 +229,27 @@ export default {
   mounted() {
     this.$axios.get(process.env.API + 'authors?sort=-created_at&itemsPerPage=15&page=' + this.currentPage)
         .then(response => {
+          this.loading = true
           this.oldAuthors = response.data.data.data
           this.total = response.data.data.links.length - 2
-          console.log(response.data)
+          this.startFrom = response.data.data.from
         })
         .catch(e => console.log(e))
+        .finally(() => {
+          this.loading = false
+        })
 
     this.$axios.get(process.env.API + 'authors?itemsPerPage=15&page=' + this.currentPage)
         .then(response => {
+          this.loading = true
           this.newAuthors = response.data.data.data
           this.total = response.data.data.links.length - 2
+          this.startFrom = response.data.data.from
         })
         .catch(e => console.log(e))
+        .finally(() => {
+          this.loading = false
+        })
   }
 }
 </script>
