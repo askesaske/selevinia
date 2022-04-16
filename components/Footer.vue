@@ -14,31 +14,31 @@
           © А.Ф. Ковшарь
         </div>
 
-<!--        <div class="footer__socials">-->
-<!--          <a href="#" class="footer__social" target="_blank">-->
-<!--            <svg width="30" height="30">-->
-<!--              <use href="../assets/img/icons.svg#tg"></use>-->
-<!--            </svg>-->
-<!--          </a>-->
+        <!--        <div class="footer__socials">-->
+        <!--          <a href="#" class="footer__social" target="_blank">-->
+        <!--            <svg width="30" height="30">-->
+        <!--              <use href="../assets/img/icons.svg#tg"></use>-->
+        <!--            </svg>-->
+        <!--          </a>-->
 
-<!--          <a href="#" class="footer__social" target="_blank">-->
-<!--            <svg width="30" height="30">-->
-<!--              <use href="../assets/img/icons.svg#fb"></use>-->
-<!--            </svg>-->
-<!--          </a>-->
+        <!--          <a href="#" class="footer__social" target="_blank">-->
+        <!--            <svg width="30" height="30">-->
+        <!--              <use href="../assets/img/icons.svg#fb"></use>-->
+        <!--            </svg>-->
+        <!--          </a>-->
 
-<!--          <a href="#" class="footer__social" target="_blank">-->
-<!--            <svg width="30" height="30">-->
-<!--              <use href="../assets/img/icons.svg#twitter"></use>-->
-<!--            </svg>-->
-<!--          </a>-->
+        <!--          <a href="#" class="footer__social" target="_blank">-->
+        <!--            <svg width="30" height="30">-->
+        <!--              <use href="../assets/img/icons.svg#twitter"></use>-->
+        <!--            </svg>-->
+        <!--          </a>-->
 
-<!--          <a href="#" class="footer__social" target="_blank">-->
-<!--            <svg width="30" height="30">-->
-<!--              <use href="../assets/img/icons.svg#vk"></use>-->
-<!--            </svg>-->
-<!--          </a>-->
-<!--        </div>-->
+        <!--          <a href="#" class="footer__social" target="_blank">-->
+        <!--            <svg width="30" height="30">-->
+        <!--              <use href="../assets/img/icons.svg#vk"></use>-->
+        <!--            </svg>-->
+        <!--          </a>-->
+        <!--        </div>-->
       </div>
 
       <div class="footer__col">
@@ -79,13 +79,13 @@
 
           ibisbilkovshar@mail.ru
         </div>
-<!--        <div class="footer__text footer__text&#45;&#45;mb10">-->
-<!--          <svg width="24" height="24">-->
-<!--            <use href="../assets/img/icons.svg#mail"></use>-->
-<!--          </svg>-->
+        <!--        <div class="footer__text footer__text&#45;&#45;mb10">-->
+        <!--          <svg width="24" height="24">-->
+        <!--            <use href="../assets/img/icons.svg#mail"></use>-->
+        <!--          </svg>-->
 
-<!--          ibisbilkovshar@mail.ru-->
-<!--        </div>-->
+        <!--          ibisbilkovshar@mail.ru-->
+        <!--        </div>-->
       </div>
 
       <div class="footer__col">
@@ -93,7 +93,7 @@
           Есть вопросы или предложения?
         </div>
 
-        <button class="footer__button" @click="openModal">
+        <button class="footer__button" @click="openContact">
           Написать нам
         </button>
 
@@ -108,19 +108,24 @@
         @close="closeModal"
         v-if="modalShow"
     ></modal-box>
+
+    <contact-box @close="closeModal" v-if="contactShow"></contact-box>
   </footer>
 </template>
 
 <script>
 import ModalBox from "@/components/ModalBox";
+import ContactBox from "@/components/ContactBox";
 
 export default {
   components: {
-    ModalBox
+    ModalBox,
+    ContactBox
   },
   data() {
     return {
-      modalShow: false
+      modalShow: false,
+      contactShow: false
     }
   },
   methods: {
@@ -128,8 +133,13 @@ export default {
       this.modalShow = true
       document.querySelector('body').style.overflow = 'hidden'
     },
+    openContact() {
+      this.contactShow = true
+      document.querySelector('body').style.overflow = 'hidden'
+    },
     closeModal() {
       this.modalShow = false
+      this.contactShow = false
       document.querySelector('body').style.overflow = 'unset'
     }
   }

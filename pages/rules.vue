@@ -9,9 +9,7 @@
 
     <div class="rules-page__main">
       <div class="rules-page__container">
-        <div class="rules-page__text">
-          {{ rulesPageText[0].value }}
-        </div>
+        <div class="rules-page__text" v-html="rulesPageText[0].value"></div>
       </div>
     </div>
   </div>

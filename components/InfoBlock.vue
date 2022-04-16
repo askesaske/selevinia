@@ -13,9 +13,7 @@
             {{ heading }}
           </h3>
 
-          <div class="info-block__subtitle">
-            {{ subtitle }}
-          </div>
+          <div class="info-block__subtitle" v-html="subtitle"></div>
         </div>
 
         <img :src="imageUrl" alt="" class="info-block__img">

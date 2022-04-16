@@ -10,7 +10,7 @@
     <div class="archive-page__main">
 
       <div class="archive-page__container">
-<!--        <filter-box class="archive-page__filter"></filter-box>-->
+        <!--        <filter-box class="archive-page__filter"></filter-box>-->
 
         <sort-box class="archive-page__sort" @sort="sort"></sort-box>
 
@@ -114,7 +114,7 @@ export default {
     }
   },
   mounted() {
-    this.$axios.get(process.env.API + 'archives?itemsPerPage=3&page=' + this.currentPage)
+    this.$axios.get(process.env.API + 'archives?sort=-year&itemsPerPage=3&page=' + this.currentPage)
         .then(response => {
           this.loading = true
           this.newPosts = response.data.data.data
@@ -125,7 +125,7 @@ export default {
           this.loading = false
         })
 
-    this.$axios.get(process.env.API + 'archives?sort=-created_at&itemsPerPage=3&page=' + this.currentPage)
+    this.$axios.get(process.env.API + 'archives?sort=year&itemsPerPage=3&page=' + this.currentPage)
         .then(response => {
           this.loading = true
           this.oldPosts = response.data.data.data

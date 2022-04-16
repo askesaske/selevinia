@@ -14,8 +14,8 @@
           <div v-if="mainPage.length > 0">
             <transition name="fade" mode="in-out">
               <p class="welcome-section__subtitle"
-                 :class="{'welcome-section__subtitle--active': expandStatus}">
-                {{ mainPage[0].value }}
+                 :class="{'welcome-section__subtitle--active': expandStatus}"
+                 v-html="mainPage[0].value">
               </p>
             </transition>
             <div class="welcome-section__expand" @click="toggleExpand">

@@ -1,0 +1,156 @@
+.contact-box {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: rgba(29, 29, 29, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+
+  &__cancel {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+  }
+
+  &__wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    background-color: $white-color;
+    border-radius: 2px;
+    box-shadow: 0 2px 20px rgba(220, 219, 219, 0.25);
+    padding: 40px;
+  }
+
+  &__title {
+    @include text-style(1.6rem, 500, $title-color);
+    margin-bottom: 20px;
+
+    &--centered {
+      text-align: center;
+    }
+  }
+
+  &__subtitle {
+    @include text-style(1.4rem, 400, $text-color);
+    line-height: 22px;
+    margin-bottom: 20px;
+
+    &--centered {
+      text-align: center;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    height: 44px;
+    background-color: #F5F5F5;
+    border-radius: 4px;
+    padding: 0 16px;
+    margin-bottom: 10px;
+    @include text-style(1.4rem, 400, $text-color);
+  }
+
+  &__select-box {
+    position: relative;
+  }
+
+  &__select {
+    width: 100%;
+    height: 44px;
+    background-color: #F5F5F5;
+    border-radius: 4px;
+    padding: 0 16px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+
+    &--active {
+      p {
+        color: $text-color !important;
+      }
+    }
+
+    svg {
+      margin-right: 0;
+    }
+
+    p {
+      @include text-style(1.4rem, 400, $text-color);
+      transition: all .3s;
+    }
+  }
+
+  &__arrow {
+
+    &--active {
+      transform: rotate(180deg);
+      transition: all .3s;
+    }
+  }
+
+  &__dropdown {
+    padding: 16px;
+    background-color: #F5F5F5;
+    border-radius: 4px;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: calc(100% + 5px);
+    box-shadow: 0 2px 20px rgba(214, 217, 224, 0.5);
+  }
+
+  &__dropdown-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+
+    &:hover p {
+      color: $text-color;
+    }
+
+    p {
+      transition: all .3s;
+      @include text-style(1.4rem, 400, $text-color);
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba($text-color, .5);
+    }
+  }
+
+  &__textarea {
+    width: 100%;
+    height: 156px;
+    padding: 12px 16px;
+    @include text-style(1.4rem, 400, $text-color);
+    line-height: 21px;
+    background-color: #F5F5F5;
+    border-radius: 4px;
+    resize: none;
+    margin-bottom: 20px;
+  }
+
+  &__btn {
+    width: 100%;
+    height: 44px;
+    background-color: $main-color;
+    border-radius: 2px;
+    @include text-style(1.6rem, 600, $white-color);
+  }
+
+  &__success-icon {
+    display: block;
+    margin: 0 auto 10px;
+  }
+}

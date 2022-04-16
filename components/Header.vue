@@ -54,20 +54,23 @@ export default {
   },
   data() {
     return {
-      searchStatus: false,
       searchText: ''
     }
   },
   computed: {
     loadedSearchState() {
-      return this.$store.state.searchState
+      return this.$store.getters.loadedSearchState
     }
+  },
+  mounted() {
+    console.log(this.loadedSearchState)
   },
   methods: {
     search() {
-      this.$store.commit('setSearchState', true)
       if (this.loadedSearchState) {
         this.$router.push('/search/' + this.searchText)
+      } else {
+        this.$store.commit('setSearchState', true)
       }
     },
     closeSearch() {
