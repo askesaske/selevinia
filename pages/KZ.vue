@@ -38,6 +38,9 @@ export default {
     kazakhPageDescription() {
       return this.$store.getters.loadedPages.filter(item => item.key === 'kazakhVersionDescription') || []
     }
+  },
+  mounted() {
+    this.$store.commit('setSearchState', false)
   }
 }
 </script>

@@ -113,6 +113,8 @@ export default {
     }
   },
   mounted() {
+    this.$store.commit('setSearchState', false)
+
     this.$axios.get(process.env.API + 'publications?itemsPerPage=3&page=' + this.currentPage)
         .then(response => {
           this.loading = true

@@ -227,6 +227,8 @@ export default {
     }
   },
   mounted() {
+    this.$store.commit('setSearchState', false)
+
     this.$axios.get(process.env.API + 'authors?sort=-created_at&itemsPerPage=15&page=' + this.currentPage)
         .then(response => {
           this.loading = true

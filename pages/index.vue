@@ -129,7 +129,7 @@ export default {
     }
   },
   mounted() {
-    console.log(this.$store.getters.loadedPosts)
+    this.$store.commit('setSearchState', false)
   }
 }
 </script>

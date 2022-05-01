@@ -120,6 +120,8 @@ export default {
     ShareSocial
   },
   mounted() {
+    this.$store.commit('setSearchState', false)
+
     this.$axios.get(process.env.API + 'posts/' + this.$route.params.article + '?include=category')
         .then(response => {
           this.loading = true

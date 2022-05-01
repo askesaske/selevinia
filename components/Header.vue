@@ -18,10 +18,10 @@
         <nuxt-link tag="li" to="/other/page/1" class="header__link">Другие публикации</nuxt-link>
       </ul>
 
-      <div class="header__search">
+      <form class="header__search" @submit.prevent="search">
         <input type="text" class="header__input" placeholder="Введите поисковую фразу" v-model="searchText">
 
-        <button class="header__btn" @click="search">
+        <button class="header__btn" type="submit">
           <svg width="24" height="24">
             <use href="../assets/img/icons.svg#search"></use>
           </svg>
@@ -30,7 +30,7 @@
         <svg width="20" height="20" class="header__cancel" @click="closeSearch">
           <use href="../assets/img/icons.svg#cancel"></use>
         </svg>
-      </div>
+      </form>
 
       <div class="header__langs">
         <nuxt-link tag="div" to="/EN" class="header__lang">EN</nuxt-link>
@@ -60,10 +60,9 @@ export default {
   computed: {
     loadedSearchState() {
       return this.$store.getters.loadedSearchState
-    }
+    },
   },
   mounted() {
-    console.log(this.loadedSearchState)
   },
   methods: {
     search() {

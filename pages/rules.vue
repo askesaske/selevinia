@@ -39,6 +39,7 @@ export default {
     }
   },
   mounted() {
+    this.$store.commit('setSearchState', false)
   }
 }
 </script>

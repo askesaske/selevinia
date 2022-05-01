@@ -194,6 +194,7 @@ export default {
   },
   mounted() {
     this.getPosts('Сначала новые')
+    this.$store.commit('setSearchState', false)
   },
 }
 </script>

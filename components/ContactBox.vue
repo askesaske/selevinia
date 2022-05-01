@@ -52,7 +52,7 @@
 
         <textarea class="contact-box__textarea" placeholder="Ваше сообщение" v-model="message"></textarea>
 
-        <button class="contact-box__btn" type="submit">Отправить</button>
+        <button class="contact-box__btn" type="submit" @click="sendRequest">Отправить</button>
       </form>
 
     </div>
@@ -101,7 +101,18 @@ export default {
       this.textState = true;
     },
     sendRequest() {
-      alert('kek')
+      this.$axios.post(process.env.API + 'feedbacks', {
+        full_name: this.fullName,
+        email: this.email,
+        type: this.contactType,
+        content: this.message
+      })
+          .then(res => {
+            if(res.statusText === 'OK') {
+              this.status = true
+            }
+          })
+          .catch(e => console.log(e))
     }
   }
 }
