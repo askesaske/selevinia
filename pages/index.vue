@@ -130,6 +130,7 @@ export default {
   },
   mounted() {
     this.$store.commit('setSearchState', false)
+    console.log('1')
   }
 }
 </script>
