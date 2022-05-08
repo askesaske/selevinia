@@ -40,28 +40,7 @@
             Поделиться:
           </div>
 
-          <div class="article-page__socials">
-            <a href="#" class="article-page__social">
-              <svg width="30" height="30">
-                <use href="../../assets/img/icons.svg#twitter-2"></use>
-              </svg>
-            </a>
-            <a href="#" class="article-page__social">
-              <svg width="30" height="30">
-                <use href="../../assets/img/icons.svg#fb-2"></use>
-              </svg>
-            </a>
-            <a href="#" class="article-page__social">
-              <svg width="30" height="30">
-                <use href="../../assets/img/icons.svg#vk-2"></use>
-              </svg>
-            </a>
-            <a href="#" class="article-page__social">
-              <svg width="30" height="30">
-                <use href="../../assets/img/icons.svg#tg-2"></use>
-              </svg>
-            </a>
-          </div>
+          <share-social :title="blog.name"></share-social>
         </div>
 
         <div class="article-page__popular">
