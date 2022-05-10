@@ -32,7 +32,8 @@ const createStore = () => {
                 state.loadedCategories = info
             },
             setPinnedPost(state, info) {
-                state.loadedPinnedPost = info.filter(item => item.id === 5)
+                state.loadedPinnedPost = info
+            //    .filter(item => item.id === 5)
             }
         },
         actions: {
