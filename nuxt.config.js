@@ -9,7 +9,7 @@ export default {
       { name: 'csrf-token', content: '{{ csrf_token() }}' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/icon.png' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
 
