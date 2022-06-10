@@ -52,12 +52,12 @@
 
         <textarea class="contact-box__textarea" placeholder="Ваше сообщение" v-model="message"></textarea>
 
-        <button class="contact-box__btn" type="submit" @click="sendRequest">Отправить</button>
+        <button class="contact-box__btn" type="submit">Отправить</button>
       </form>
 
     </div>
 
-    <div class="contact-box__wrapper" v-else>
+    <div class="contact-box__wrapper" v-if="status">
       <svg width="16" height="16" class="contact-box__cancel" @click="$emit('close')">
         <use href="../assets/img/icons.svg#cancel"></use>
       </svg>
@@ -75,10 +75,28 @@
       </div>
     </div>
 
+    <div class="contact-box__wrapper" v-if="error">
+      <svg width="16" height="16" class="contact-box__cancel" @click="$emit('close')">
+        <use href="../assets/img/icons.svg#cancel"></use>
+      </svg>
+
+      <div class="contact-box__title contact-box__title--centered">
+        Упс!
+      </div>
+
+      <div class="contact-box__subtitle contact-box__subtitle--centered">
+        Произошла ошибка, попробуйте еще раз
+      </div>
+    </div>
+
+    <LoaderBlock v-if="loader" />
+
   </div>
 </template>
 
 <script>
+import LoaderBlock from "@/components/LoaderBlock";
+
 export default {
   data() {
     return {
@@ -88,7 +106,9 @@ export default {
       fullName: '',
       email: '',
       message: '',
-      status: false
+      status: false,
+      loader: false,
+      error: false
     };
   },
   methods: {
@@ -101,6 +121,7 @@ export default {
       this.textState = true;
     },
     sendRequest() {
+      this.loader = true;
       this.$axios.post(process.env.API + 'feedbacks', {
         full_name: this.fullName,
         email: this.email,
@@ -108,11 +129,12 @@ export default {
         content: this.message
       })
           .then(res => {
-            if(res.statusText === 'OK') {
+            if (res.statusText === 'OK') {
               this.status = true
             }
           })
-          .catch(e => console.log(e))
+          .catch(() => this.error = true)
+          .finally(() => this.loader = false)
     }
   }
 }

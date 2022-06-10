@@ -109,7 +109,7 @@
         v-if="modalShow"
     ></modal-box>
 
-    <contact-box @close="closeModal" v-if="contactShow"></contact-box>
+    <contact-box @close="closeModal" v-show="contactShow"></contact-box>
   </footer>
 </template>
 

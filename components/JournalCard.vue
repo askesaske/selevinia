@@ -49,7 +49,7 @@
       </div>
     </div>
 
-    <a :href="'https://sabadoryo.com/api/archives/' + id + '/download-document'" target="_blank"
+    <a :href="'https://backend.selevinia.kz/api/archives/' + id + '/download-document'" target="_blank"
        class="button journal-card__button">
       <svg width="24" height="24">
         <use href="../assets/img/icons.svg#download"></use>

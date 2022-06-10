@@ -25,7 +25,7 @@
       </button>
     </div>
 
-    <div class="modal__wrapper" v-else>
+    <div class="modal__wrapper" v-if="status">
       <svg width="20" height="20" class="modal__cancel" @click="$emit('close')">
         <use href="../assets/img/icons.svg#cancel"></use>
       </svg>
@@ -42,19 +42,43 @@
         Вы успешно подписались на рассылку от Selevinia
       </div>
     </div>
+
+    <div class="modal__wrapper" v-if="error">
+      <svg width="20" height="20" class="modal__cancel" @click="$emit('close')">
+        <use href="../assets/img/icons.svg#cancel"></use>
+      </svg>
+
+      <div class="modal__title modal__title--centered">
+        Упс!
+      </div>
+
+      <div class="modal__subtitle modal__subtitle--centered">
+        Произошла ошибка, попробуйте еще раз
+      </div>
+    </div>
+
+    <LoaderBlock v-if="loader"/>
   </div>
 </template>
 
 <script>
+import LoaderBlock from "@/components/LoaderBlock";
+
 export default {
+  components: {
+    LoaderBlock
+  },
   data() {
     return {
       mail: '',
-      status: false
+      status: false,
+      loader: false,
+      error: false,
     }
   },
   methods: {
     sendMail() {
+      this.loader = true;
       this.$axios.post(process.env.API + 'subscriptions ', {
         email: this.mail
       })
@@ -63,7 +87,8 @@ export default {
               this.status = true
             }
           })
-          .catch(e => console.log(e))
+          .catch(() => this.error = true)
+          .finally(() => this.loader = false)
     }
   }
 }
