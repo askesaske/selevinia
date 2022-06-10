@@ -33,7 +33,7 @@ const createStore = () => {
             },
             setPinnedPost(state, info) {
                 state.loadedPinnedPost = info
-            //    .filter(item => item.id === 5)
+               .filter(item => item.id === 5)
             }
         },
         actions: {
