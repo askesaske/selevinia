@@ -11,18 +11,20 @@
             Selevinia
           </p>
 
-          <div v-if="mainPage.length > 0">
-            <transition name="fade" mode="in-out">
-              <p class="welcome-section__subtitle"
-                 :class="{'welcome-section__subtitle--active': expandStatus}"
-                 v-html="mainPage[0].value">
-              </p>
-            </transition>
-            <div class="welcome-section__expand" @click="toggleExpand">
-              <p v-if="!expandStatus">Развернуть</p>
-              <p v-else>Свернуть</p>
+          <client-only>
+            <div v-show="mainPage.length > 0">
+              <transition name="fade" mode="in-out">
+                <p class="welcome-section__subtitle"
+                   :class="{'welcome-section__subtitle--active': expandStatus}"
+                   v-html="mainPage[0].value">
+                </p>
+              </transition>
+              <div class="welcome-section__expand" @click="toggleExpand">
+                <p v-if="!expandStatus">Развернуть</p>
+                <p v-else>Свернуть</p>
+              </div>
             </div>
-          </div>
+          </client-only>
 
           <button class="button welcome-section__button" @click="openModal">
             Подписаться
@@ -130,7 +132,6 @@ export default {
   },
   mounted() {
     this.$store.commit('setSearchState', false)
-    console.log('1')
   }
 }
 </script>
