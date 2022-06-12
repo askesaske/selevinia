@@ -1,11 +1,21 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Selevinia',
+    title: 'Selevinia — зоологический журнал-ежегодник',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'Selevinia — зоологический журнал-ежегодник' },
+      {
+        hid: 'og:title',
+        name: 'og:title',
+        content: 'Selevinia — зоологический журнал-ежегодник'
+      },
+      {
+        hid: 'og:site_name',
+        name: 'og:site_name',
+        content: 'Selevinia — зоологический журнал-ежегодник'
+      },
       { name: 'csrf-token', content: '{{ csrf_token() }}' }
     ],
     link: [
