@@ -116,7 +116,7 @@ export default {
   mounted() {
     this.$store.commit('setSearchState', false)
 
-    this.$axios.get(process.env.API + 'archives?sort=-year&itemsPerPage=3&page=' + this.currentPage)
+    this.$axios.get(process.env.API + 'archives?sort=-year&itemsPerPage=10&page=' + this.currentPage)
         .then(response => {
           this.loading = true
           this.newPosts = response.data.data.data
@@ -127,7 +127,7 @@ export default {
           this.loading = false
         })
 
-    this.$axios.get(process.env.API + 'archives?sort=year&itemsPerPage=3&page=' + this.currentPage)
+    this.$axios.get(process.env.API + 'archives?sort=year&itemsPerPage=10&page=' + this.currentPage)
         .then(response => {
           this.loading = true
           this.oldPosts = response.data.data.data
