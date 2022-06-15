@@ -11,11 +11,11 @@
 
       <div class="authors-page__container">
 
-<!--        <search-box class="authors-page__search"></search-box>-->
+        <!--        <search-box class="authors-page__search"></search-box>-->
 
-        <sort-box class="authors-page__sort" @sort="sort"></sort-box>
+        <!--        <sort-box class="authors-page__sort" @sort="sort"></sort-box>-->
 
-        <table class="authors-page__table table" v-if="sortState === 'Сначала новые'">
+        <table class="authors-page__table table">
           <thead>
           <tr>
             <th class="table__sm">№</th>
@@ -78,71 +78,8 @@
           </tbody>
         </table>
 
-        <table class="authors-page__table table" v-else>
-          <thead>
-          <tr>
-            <th class="table__sm">№</th>
-            <th>ФИО</th>
-            <th>Об авторе</th>
-            <th>Перечень статей</th>
-            <th></th>
-          </tr>
-          </thead>
-          <tbody v-for="(author, k) in oldAuthors" :key="author.id">
-          <tr :class="{'table__shadow' : dropdownState === author.id}">
-            <td class="table__sm">{{ startFrom + k }}</td>
-            <td>{{ author.full_name }}</td>
-            <td>
-              <span class="table__about">
-                {{ author.about }}
-              </span>
-            </td>
-            <td>
-              <span class="table__articles">
-                {{ author.articles }}
-              </span>
-            </td>
-            <td @click="openDropdown(author.id)">
-              <svg width="24" height="24">
-                <use href="../../../assets/img/icons.svg#arrow-table"></use>
-              </svg>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="5" class="table__dropdown" v-if="dropdownState === author.id">
-              <div class="table__row">
-                <div class="table__label">
-                  ФИО
-                </div>
-                <div class="table__text">
-                  {{ author.full_name }}
-                </div>
-              </div>
-
-              <div class="table__row">
-                <div class="table__label">
-                  Описание
-                </div>
-                <div class="table__text">
-                  {{ author.about }}
-                </div>
-              </div>
-
-              <div class="table__row">
-                <div class="table__label">
-                  Перечень статей
-                </div>
-                <div class="table__text">
-                  {{ author.articles }}
-                </div>
-              </div>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-
         <padding-box class="authors-page__padding"
-                     :total="total"
+                     :total="pageNums"
                      :current="currentPage"
                      @exactlyPage="pageChosen"
                      @prevPage="prevPage"
@@ -181,20 +118,19 @@ export default {
       }],
       dropdownState: null,
       sortState: 'Сначала новые',
-      total: 1,
+      total: 0  ,
       newAuthors: [],
-      oldAuthors: [],
       currentPage: parseInt(this.$route.params.number),
       startFrom: 1,
       loading: false
     }
   },
   computed: {
-    loadedAuthors() {
-      return this.$store.getters.loadedAuthors
-    },
     authorsPage() {
       return this.$store.getters.loadedPages.filter(item => item.key === 'authorsText') || []
+    },
+    pageNums() {
+      return this.paginate(this.currentPage, this.total, 1)
     }
   },
   methods: {
@@ -224,28 +160,33 @@ export default {
     },
     pageChosen(page) {
       this.$router.push('/authors/page/' + page)
+    },
+    paginate(current_page, last_page, onSides = 3) {
+      // pages
+      let pages = [];
+      // Loop through
+      for (let i = 1; i <= last_page; i++) {
+        // Define offset
+        let offset = (i === 1 || last_page) ? onSides + 1 : onSides;
+        // If added
+        if (i === 1 || (current_page - offset <= i && current_page + offset >= i) ||
+            i === current_page || i === last_page) {
+          pages.push(i);
+        } else if (i === current_page - (offset + 1) || i === current_page + (offset + 1)) {
+          pages.push('...');
+        }
+      }
+      return pages;
     }
   },
   mounted() {
     this.$store.commit('setSearchState', false)
 
-    this.$axios.get(process.env.API + 'authors?sort=-created_at&itemsPerPage=15&page=' + this.currentPage)
-        .then(response => {
-          this.loading = true
-          this.oldAuthors = response.data.data.data
-          this.total = response.data.data.links.length - 2
-          this.startFrom = response.data.data.from
-        })
-        .catch(e => console.log(e))
-        .finally(() => {
-          this.loading = false
-        })
-
     this.$axios.get(process.env.API + 'authors?itemsPerPage=15&page=' + this.currentPage)
         .then(response => {
           this.loading = true
           this.newAuthors = response.data.data.data
-          this.total = response.data.data.links.length - 2
+          this.total = response.data.data.last_page
           this.startFrom = response.data.data.from
         })
         .catch(e => console.log(e))

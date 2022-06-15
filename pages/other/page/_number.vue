@@ -13,9 +13,9 @@
 
 <!--        <search-box class="other-page__search"></search-box>-->
 
-        <sort-box class="other-page__sort" @sort="sort"></sort-box>
+<!--        <sort-box class="other-page__sort" @sort="sort"></sort-box>-->
 
-        <div class="archive-page__cards" v-if="sortState === 'Сначала новые'">
+        <div class="archive-page__cards">
           <journal-card class="archive-page__journal"
                         :name="post.title"
                         :description="post.description"
@@ -27,20 +27,8 @@
           </journal-card>
         </div>
 
-        <div class="archive-page__cards" v-else>
-          <journal-card class="archive-page__journal"
-                        :name="post.title"
-                        :description="post.description"
-                        :img="post.image_url"
-                        :id="post.id"
-                        :link="post.document_url"
-                        v-for="post in oldPosts"
-                        :key="post.id">
-          </journal-card>
-        </div>
-
         <padding-box class="archive-page__padding"
-                     :total="total"
+                     :total="pageNums"
                      :current="currentPage"
                      @exactlyPage="pageChosen"
                      @prevPage="prevPage"
@@ -78,7 +66,7 @@ export default {
         link: ''
       }],
       sortState: 'Сначала новые',
-      total: 1,
+      total: 0,
       newPosts: [],
       oldPosts: [],
       currentPage: parseInt(this.$route.params.number),
@@ -88,6 +76,9 @@ export default {
   computed: {
     otherPage() {
       return this.$store.getters.loadedPages.filter(item => item.key === 'othersText') || []
+    },
+    pageNums() {
+      return this.paginate(this.currentPage, this.total, 1)
     }
   },
   methods: {
@@ -110,6 +101,23 @@ export default {
     },
     pageChosen(page) {
       this.$router.push('/other/page/' + page)
+    },
+    paginate(current_page, last_page, onSides = 3) {
+      // pages
+      let pages = [];
+      // Loop through
+      for (let i = 1; i <= last_page; i++) {
+        // Define offset
+        let offset = (i === 1 || last_page) ? onSides + 1 : onSides;
+        // If added
+        if (i === 1 || (current_page - offset <= i && current_page + offset >= i) ||
+            i === current_page || i === last_page) {
+          pages.push(i);
+        } else if (i === current_page - (offset + 1) || i === current_page + (offset + 1)) {
+          pages.push('...');
+        }
+      }
+      return pages;
     }
   },
   mounted() {
@@ -119,23 +127,23 @@ export default {
         .then(response => {
           this.loading = true
           this.newPosts = response.data.data.data
-          this.total = response.data.data.links.length - 2
+          this.total = response.data.data.last_page
         })
         .catch(e => console.log(e))
         .finally(() => {
           this.loading = false
         })
 
-    this.$axios.get(process.env.API + 'publications?itemsPerPage=10&page=' + this.currentPage)
-        .then(response => {
-          this.loading = true
-          this.oldPosts = response.data.data.data
-          this.total = response.data.data.links.length - 2
-        })
-        .catch(e => console.log(e))
-        .finally(() => {
-          this.loading = false
-        })
+    // this.$axios.get(process.env.API + 'publications?itemsPerPage=10&page=' + this.currentPage)
+    //     .then(response => {
+    //       this.loading = true
+    //       this.oldPosts = response.data.data.data
+    //       this.total = response.data.data.last_page
+    //     })
+    //     .catch(e => console.log(e))
+    //     .finally(() => {
+    //       this.loading = false
+    //     })
   }
 }
 </script>

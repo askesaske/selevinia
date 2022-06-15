@@ -29,8 +29,8 @@
 export default {
   props: {
     total: {
-      type: Number,
-      default: 1
+      type: Array,
+      default: []
     },
     current: {
       type: Number,

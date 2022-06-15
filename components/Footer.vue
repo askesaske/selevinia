@@ -77,7 +77,7 @@
             <use href="../assets/img/icons.svg#mail"></use>
           </svg>
 
-          ibisbilkovshar@mail.ru
+          selevinia.kz@gmail.com
         </div>
         <!--        <div class="footer__text footer__text&#45;&#45;mb10">-->
         <!--          <svg width="24" height="24">-->
@@ -89,14 +89,6 @@
       </div>
 
       <div class="footer__col">
-        <div class="footer__title footer__title--fw400 footer__title--mb20">
-          Есть вопросы или предложения?
-        </div>
-
-        <button class="footer__button" @click="openContact">
-          Написать нам
-        </button>
-
         <div class="footer__text footer__text--mb10">Сайт разработан при поддержке АСБК</div>
         <div class="footer__text footer__text footer__text--mb10">Автор лого Selevinia: Т. Е. Лопатина</div>
         <div class="footer__text footer__text footer__text--mb10">Автор штриховых рисунков: Ф. Ф. Карпов</div>

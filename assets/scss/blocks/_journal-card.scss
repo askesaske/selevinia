@@ -50,6 +50,10 @@
       color: $title-color;
       font-weight: 600;
     }
+
+    &--name {
+      margin-right: 180px;
+    }
   }
 
   &__link {

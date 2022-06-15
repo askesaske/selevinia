@@ -136,8 +136,8 @@
     }
 
     td {
-      padding: 9px 8px;
-      @include text-style(1.2rem, 500, $text-color);
+      padding: 9px 5px;
+      @include text-style(1rem, 500, $text-color);
       line-height: 16px;
 
       &:nth-child(2) {

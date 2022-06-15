@@ -15,7 +15,7 @@
 <!--                    @searchText="searchText">-->
 <!--        </filter-box>-->
 
-        <sort-box class="blog-page__sort" @sort="getPosts"></sort-box>
+<!--        <sort-box class="blog-page__sort" @sort="getPosts"></sort-box>-->
 
         <div class="blog-page__cards" v-if="sortState === 'Сначала новые'">
           <blog-card v-for="post in pinnedPost"
@@ -70,7 +70,7 @@
 
         <padding-box
             class="blog-page__padding"
-            :total="total"
+            :total="pageNums"
             :current="currentPage"
             @exactlyPage="pageChosen"
             @prevPage="prevPage"
@@ -108,7 +108,7 @@ export default {
         link: ''
       }],
       sortState: 'Сначала новые',
-      total: 1,
+      total: 0,
       newPosts: [],
       oldPosts: [],
       currentPage: parseInt(this.$route.params.number),
@@ -126,9 +126,29 @@ export default {
     },
     pinnedPost() {
       return this.$store.getters.loadedPinnedPost
+    },
+    pageNums() {
+      return this.paginate(this.currentPage, this.total, 1)
     }
   },
   methods: {
+    paginate(current_page, last_page, onSides = 3) {
+      // pages
+      let pages = [];
+      // Loop through
+      for (let i = 1; i <= last_page; i++) {
+        // Define offset
+        let offset = (i === 1 || last_page) ? onSides + 1 : onSides;
+        // If added
+        if (i === 1 || (current_page - offset <= i && current_page + offset >= i) ||
+            i === current_page || i === last_page) {
+          pages.push(i);
+        } else if (i === current_page - (offset + 1) || i === current_page + (offset + 1)) {
+          pages.push('...');
+        }
+      }
+      return pages;
+    },
     searchText(val) {
       if (this.sortState === 'Сначала новые') {
         this.newPosts.forEach(item => {
@@ -164,7 +184,7 @@ export default {
             .then(response => {
               this.loading = true
               this.newPosts = response.data.data.data
-              this.total = response.data.data.links.length - 2
+              this.total = response.data.data.last_page
               const index = this.newPosts.findIndex(item => item.id === 5)
               if (index > -1) {
                 this.newPosts.splice(index, 1);
@@ -179,7 +199,7 @@ export default {
             .then(response => {
               this.loading = true
               this.oldPosts = response.data.data.data
-              this.total = response.data.data.links.length - 2
+              this.total = response.data.data.last_page
               const index = this.oldPosts.findIndex(item => item.id === 5)
               if (index > -1) {
                 this.oldPosts.splice(index, 1);
