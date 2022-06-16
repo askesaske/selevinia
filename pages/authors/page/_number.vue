@@ -182,7 +182,7 @@ export default {
   mounted() {
     this.$store.commit('setSearchState', false)
 
-    this.$axios.get(process.env.API + 'authors?itemsPerPage=15&page=' + this.currentPage)
+    this.$axios.get(process.env.API + 'authors?itemsPerPage=15&sort=full_name&page=' + this.currentPage)
         .then(response => {
           this.loading = true
           this.newAuthors = response.data.data.data
