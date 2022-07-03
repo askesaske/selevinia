@@ -30,6 +30,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     {src: "~/plugins/defaultPlugin", mode: "client"},
+    '~/plugins/gtm',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -50,8 +51,17 @@ export default {
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
-    "vue2-editor/nuxt"
+    "vue2-editor/nuxt",
+    '@nuxtjs/gtm',
   ],
+
+  gtm: {
+    id: 'G-RC3M33H431',
+    debug: false,
+    scriptDefer: true,
+    pageTracking: true,
+  },
+
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     credentials: true,
